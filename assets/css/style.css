@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap");
+:root {
+  --c-s-100: #CECECE;
+  --c-s-200: #7E7E7D;
+  --c-b: #1C1C1C;
+  --c-bg: #FAFAFA;
+  --f-body: "Montserrat", "Verdana", sans-serif;
+  --f-heading: "Montserrat", "Verdana", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--c-bg);
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  color: var(--c-s-200);
+}
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 12px;
+  }
+}
+h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
+  font-family: var(--f-heading);
+  font-weight: 500;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: var(--c-b);
+}
+h1--c-100, h2--c-100, h3--c-100, h4--c-100, .h1--c-100, .h2--c-100, .h3--c-100, .h4--c-100 {
+  color: var(--c-s-100);
+}
+h1--c-200, h2--c-200, h3--c-200, h4--c-200, .h1--c-200, .h2--c-200, .h3--c-200, .h4--c-200 {
+  color: var(--c-s-200);
+}
+
+h1, .h1 {
+  font-size: 28px;
+}
+
+h2, .h2 {
+  font-size: 18px;
+}
+
+h3, .h3 {
+  font-size: 12px;
+}
+
+h4, .h4 {
+  font-size: 8px;
+}
+
+@media (min-width: 1200px) {
+  h1, .h1 {
+    font-size: 37px;
+  }
+  h2, .h2 {
+    font-size: 22px;
+  }
+  h3, .h3 {
+    font-size: 14px;
+  }
+  h4, .h4 {
+    font-size: 9px;
+  }
+}
+a {
+  text-decoration: none;
+}
