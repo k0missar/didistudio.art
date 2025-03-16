@@ -139,9 +139,11 @@ add_action( 'widgets_init', 'didistudio_art_widgets_init' );
  */
 function didistudio_art_scripts() {
 	wp_enqueue_style( 'didistudio-art-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'didistudio-art-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'didistudio-art-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+    wp_enqueue_style( 'didistudio-art-main-style', get_template_directory_uri() . '/assets/css/style.css', array(), _S_VERSION );
+
+	wp_enqueue_script( 'didistudio-art-js', get_template_directory_uri() . '/assets/js/script.js', array(), _S_VERSION, true );
+	//wp_enqueue_script( 'didistudio-art-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -149,30 +151,15 @@ function didistudio_art_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'didistudio_art_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+// ФУНКЦИЯ ДЛЯ DEV СЕРВЕРА РАЗРАБОТКИ
+function change_domain_in_assets($src) {
+    // Проверяем, если домен — это dev-окружение (wsl)
+    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
+        // Заменяем только первое вхождение 'didistudio.art' на 'didistudio.wsl'
+        $src = preg_replace('/didistudio\.art/', 'didistudio.wsl', $src, 1);
+    }
+    return $src;
 }
 
+add_filter('style_loader_src', 'change_domain_in_assets');
+add_filter('script_loader_src', 'change_domain_in_assets');

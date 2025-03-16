@@ -22,14 +22,14 @@
 			?>
 			<div class="entry-meta">
 				<?php
-				didistudio_art_posted_on();
-				didistudio_art_posted_by();
+				//didistudio_art_posted_on();
+				//didistudio_art_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php didistudio_art_post_thumbnail(); ?>
+	<?php //didistudio_art_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php
@@ -58,6 +58,6 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php didistudio_art_entry_footer(); ?>
+		<?php //didistudio_art_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
