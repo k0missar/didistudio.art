@@ -1,0 +1,32 @@
+.home-image {
+  width: min(653.3333333333px, 93.3333333333vw);
+  aspect-ratio: 336/312;
+}
+
+@media (min-width: 700px) {
+  .home-image {
+    width: clamp(663.5416666667px, 94.7916666667vw, 1137.5px);
+    max-height: 673px;
+    aspect-ratio: 728/673;
+  }
+}
+@media (min-width: 1200px) {
+  .home-image {
+    width: clamp(1133.3333333333px, 94.4444444444vw, 1511.1111111111px);
+    max-height: 590px;
+    aspect-ratio: 1360/590;
+  }
+}
+@media (min-width: 1600px) {
+  .home-image {
+    width: clamp(1533.3333333333px, 95.8333333333vw, 1840px);
+    aspect-ratio: 1840/798;
+    max-height: 798px;
+  }
+}
+.home-image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
