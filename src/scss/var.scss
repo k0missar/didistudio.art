@@ -1,0 +1,43 @@
+@mixin c_clamp($property, $size-block, $size-box) {
+    // Инициализация переменных по умолчанию
+    $clamp-min: 0;
+    $clamp-max: 0;
+    $clamp-base: 0;
+
+    // Условия для разных разрешений
+    @if $size-box == 360 {
+        $clamp-min: calc(300 * $size-block / $size-box);
+        $clamp-max: calc(700 * $size-block / $size-box);
+    }
+    @else if $size-box == 768 {
+        $clamp-min: calc(700 * $size-block / $size-box);
+        $clamp-max: calc(1200 * $size-block / $size-box);
+    }
+    @else if $size-box == 1440 {
+        $clamp-min: calc(1200 * $size-block / $size-box);
+        $clamp-max: calc(1600 * $size-block / $size-box);
+    }
+    @else if $size-box == 1920 {
+        $clamp-min: calc(1600 * $size-block / $size-box);
+        $clamp-max: calc(1920 * $size-block / $size-box);
+    }
+
+    $clamp-base: calc(100 * $size-block / $size-box);
+
+    // Применение результата
+    #{$property}: clamp(#{$clamp-min}px, #{$clamp-base}vw, #{$clamp-max}px);
+}
+
+@mixin c_min($property, $min, $size-block, $size-box) {
+    $c_min: calc($min * $size-block / $size-box);
+    $base: calc($size-block * 100 / $size-box);
+
+    #{$property}: min(#{$c_min}px, #{$base}vw);
+}
+
+@mixin c_max($property, $max, $size-block, $size-box) {
+    $c_max: calc($max * $size-block / $size-box);
+    $base: calc($size-block * 100 / $size-box);
+
+    #{$property}: max(#{$c_max}px, #{$base}vw);
+}

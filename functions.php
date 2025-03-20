@@ -142,6 +142,11 @@ function didistudio_art_scripts() {
 
     wp_enqueue_style( 'didistudio-art-main-style', get_template_directory_uri() . '/assets/css/style.css', array(), _S_VERSION );
 
+    wp_register_style('didistudio-art-component-home-image', get_template_directory_uri() . '/assets/css/components/home-image.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-about-me', get_template_directory_uri() . '/assets/css/components/about-me.css', array(), '1.0', 'all');
+
+    wp_register_style('didistudio-art-page-home', get_template_directory_uri() . '/assets/css/page/home.css', array(), '1.0', 'all');
+
 	wp_enqueue_script( 'didistudio-art-js', get_template_directory_uri() . '/assets/js/script.js', array(), _S_VERSION, true );
 	//wp_enqueue_script( 'didistudio-art-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
@@ -163,3 +168,94 @@ function change_domain_in_assets($src) {
 
 add_filter('style_loader_src', 'change_domain_in_assets');
 add_filter('script_loader_src', 'change_domain_in_assets');
+
+/*
+ * Страница настроек
+ */
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title' 	=> 'Основные настройки',
+        'menu_title'	=> 'Настройки темы',
+        'menu_slug' 	=> 'theme-general-settings',
+        'capability'	=> 'edit_posts',
+        'redirect'		=> false
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title' 	=> 'Настройки шапки',
+        'menu_title'	=> 'Шапка',
+        'parent_slug'	=> 'theme-general-settings',
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title' 	=> 'Настройки подвала',
+        'menu_title'	=> 'Подвал',
+        'parent_slug'	=> 'theme-general-settings',
+    ));
+
+}
+
+/*
+ * Регистрируем пользовательский тип записи Портфолио
+ */
+add_action('init', function () {
+    $labels = [
+        'name' => 'Портфолио',
+        'menu_name' => 'Портфолио',
+        'singular_name' => 'Портфолио',
+        'add_new' => 'Добавить работу',
+        'add_new_item' => 'Добавить новую работу',
+        'edit_item' => 'Редактировать работу',
+        'new_item' => 'Новая работа',
+        'all_items' => 'Все работы',
+        'view_item' => 'Посмотреть работу',
+        'search_items' => 'Найти работу',
+        'not_found' =>  'Ничего не найдено',
+        'not_found_in_trash' => 'В корзине не найдено'
+    ];
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => [
+            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+        ],
+        'taxonomies' => ['genre'],
+    ];
+    register_post_type('portfolio', $args);
+});
+
+/*
+ * Регистрируем иерархическую таксономию по портфолио
+ */
+add_action('init', function () {
+    $labels = array(
+        'name'          => 'Раздел',
+        'singular_name' => 'Раздел',
+        'menu_name'     => 'Раздел' ,
+        'all_items'     => 'Все разделы',
+        'edit_item'     => 'Редактировать раздел',
+        'view_item'     => 'Посмотреть раздел',
+        'update_item'   => 'Сохранить раздел',
+        'add_new_item'  => 'Добавить новый раздел',
+        'parent_item'   => 'Родительский раздел',
+        'search_items'  => 'Поиск по разделам',
+        'back_to_items' => 'Назад на страницу разделов',
+        'most_used'     => 'Популярные разделы',
+    );
+    $args = array(
+        'labels'            => $labels,
+        'show_admin_column' => true,
+        'hierarchical'      => true,
+    );
+    register_taxonomy('section', ['portfolio'], $args);
+});

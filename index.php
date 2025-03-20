@@ -14,33 +14,42 @@
 
 get_header();
 ?>
+<?php
+    if (is_home()) {
+        wp_enqueue_style('didistudio-art-page-home');
+    }
+?>
+<main>
+    <div class="container">
+        <?php
+            get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image']);
+            get_template_part('template-parts/components/about-me', '', ['class' => 'home__about-me']);
+        ?>
 
-	<main id="primary" class="site-main">
+        <?php
+        if ( have_posts() ) :
 
-		<?php
-		if ( have_posts() ) :
+            if ( is_home() && ! is_front_page() ) :
+                ?>
+                <header>
+                    <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
+                </header>
+                <?php
+            endif;
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+            while ( have_posts() ) :
+                the_post();
+                get_template_part( 'template-parts/content', get_post_type() );
+            endwhile;
 
-			while ( have_posts() ) :
-				the_post();
-				get_template_part( 'template-parts/content', get_post_type() );
-			endwhile;
+        else :
 
-		else :
+            get_template_part( 'template-parts/content', 'none' );
 
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main>
+        endif;
+        ?>
+    </div>
+</main>
 
 <?php
 get_sidebar();

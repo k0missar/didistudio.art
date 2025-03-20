@@ -12,7 +12,7 @@
 }
 @media (min-width: 1200px) {
   .home-image {
-    width: clamp(1133.3333333333px, 94.4444444444vw, 1511.1111111111px);
+    width: clamp(1135.8333333333px, 94.6527777778vw, 1514.4444444444px);
     max-height: 590px;
     aspect-ratio: 1360/590;
   }

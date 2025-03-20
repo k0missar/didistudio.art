@@ -15,7 +15,7 @@
 
 @media (min-width: 1200px) {
     .home-image {
-        @include var.c_clamp(width, 1360, 1440);
+        @include var.c_clamp(width, 1363, 1440);
         max-height: 590px;
         aspect-ratio: 1360/590;
     }

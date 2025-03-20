@@ -1,0 +1,11 @@
+.home {}
+
+.home__home-image {
+    margin-bottom: 47px;
+}
+
+@media (min-width: 700px) {
+    .home__home-image {
+        margin-bottom: 60px;
+    }
+}
