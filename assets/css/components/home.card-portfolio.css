@@ -1,0 +1,50 @@
+.home.card-portfolio {
+  position: relative;
+}
+
+.home.card-portfolio__src {
+  width: min(554.1666666667px, 79.1666666667vw);
+  max-width: 360px;
+  aspect-ratio: 285/343;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+@media (min-width: 700px) {
+  .home.card-portfolio__src {
+    width: clamp(360.9375px, 51.5625vw, 618.75px);
+    max-width: 396px;
+    max-height: 497px;
+    aspect-ratio: 396/497;
+  }
+}
+@media (min-width: 1200px) {
+  .home.card-portfolio__src {
+    width: clamp(366.6666666667px, 30.5555555556vw, 488.8888888889px);
+    max-width: 440px;
+    max-height: 530px;
+    aspect-ratio: 440/530;
+  }
+}
+
+.home.card-portfolio__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.home.card-portfolio__title {
+  margin-bottom: 12px;
+}
+
+.home.card-portfolio__link {
+  text-decoration: none;
+}
+.home.card-portfolio__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
