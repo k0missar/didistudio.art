@@ -1,0 +1,85 @@
+@use '../var';
+
+.portfolio-block {
+    margin-bottom: 120px;
+
+    @media (min-width: 700px) {
+        margin-bottom: 140px;
+    }
+
+    @media (min-width: 1200px) {
+        margin-bottom: 160px;
+    }
+}
+
+.portfolio-block__wrapper {
+    @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: .4888fr 1fr;
+        column-gap: 20px;
+    }
+}
+
+// Контент перед слайдером
+.portfolio-block__content {
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-content: end;
+    gap: 20px;
+
+    @media (min-width: 1200px) {
+        max-width: 300px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        align-content: start;
+    }
+}
+
+.portfolio-block__title {
+}
+
+.portfolio-block__description {
+    grid-column: 1/-1;
+}
+
+.portfolio-block__link {
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    @media (min-width: 1200px) {
+        grid-column: unset;
+        grid-row: unset;
+    }
+}
+
+// Слайдер
+.portfolio-slider {
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+}
+
+.portfolio-slider__wrapper.swiper-wrapper {
+    @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 20px;
+    }
+}
+
+.portfolio-slider__slide.swiper-slide {
+    @include var.c_min(width, 700, 285, 360);
+    max-width: 360px;
+    flex-shrink: 0;
+
+    @media (min-width: 700px) {
+        @include var.c_clamp(width, 396, 768);
+        max-width: 396px;
+    }
+
+    @media (min-width: 1200px) {
+        @include var.c_clamp(width, 440, 1440);
+        max-width: 440px;
+    }
+}
