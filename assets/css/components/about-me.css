@@ -1,3 +1,18 @@
+.about-me {
+  margin-bottom: 120px;
+}
+@media (min-width: 700px) {
+  .about-me {
+    margin-bottom: 140px;
+    padding-bottom: 60px;
+  }
+}
+@media (min-width: 1200px) {
+  .about-me {
+    margin-bottom: 160px;
+  }
+}
+
 .about-me__wrapper {
   padding-bottom: 65px;
   position: relative;

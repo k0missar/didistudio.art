@@ -28,6 +28,7 @@
     #{$property}: clamp(#{$clamp-min}px, #{$clamp-base}vw, #{$clamp-max}px);
 }
 
+// min - минимальный размер экрана, size-block - размер блока, size-box - размер экрана по макету
 @mixin c_min($property, $min, $size-block, $size-box) {
     $c_min: calc($min * $size-block / $size-box);
     $base: calc($size-block * 100 / $size-box);
@@ -40,4 +41,17 @@
     $base: calc($size-block * 100 / $size-box);
 
     #{$property}: max(#{$c_max}px, #{$base}vw);
+}
+
+// Отступы
+@mixin wrapper_margin() {
+    margin-bottom: 120px;
+
+    @media (min-width: 700px) {
+        margin-bottom: 140px;
+    }
+
+    @media (min-width: 1200px) {
+        margin-bottom: 160px;
+    }
 }

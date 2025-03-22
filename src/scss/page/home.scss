@@ -1,11 +1,20 @@
+@use '../var';
+
 .home {}
 
 .home__home-image {
     margin-bottom: 47px;
-}
 
-@media (min-width: 700px) {
-    .home__home-image {
+    @media (min-width: 700px) {
         margin-bottom: 60px;
     }
 }
+
+.home__portfolio-block {
+    @include var.wrapper_margin;
+}
+
+.home__service {
+    @include var.wrapper_margin;
+}
+

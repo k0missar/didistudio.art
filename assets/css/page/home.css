@@ -1,9 +1,36 @@
 .home__home-image {
   margin-bottom: 47px;
 }
-
 @media (min-width: 700px) {
   .home__home-image {
     margin-bottom: 60px;
+  }
+}
+
+.home__portfolio-block {
+  margin-bottom: 120px;
+}
+@media (min-width: 700px) {
+  .home__portfolio-block {
+    margin-bottom: 140px;
+  }
+}
+@media (min-width: 1200px) {
+  .home__portfolio-block {
+    margin-bottom: 160px;
+  }
+}
+
+.home__service {
+  margin-bottom: 120px;
+}
+@media (min-width: 700px) {
+  .home__service {
+    margin-bottom: 140px;
+  }
+}
+@media (min-width: 1200px) {
+  .home__service {
+    margin-bottom: 160px;
   }
 }

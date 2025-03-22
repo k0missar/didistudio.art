@@ -139,35 +139,29 @@ add_action( 'widgets_init', 'didistudio_art_widgets_init' );
  */
 function didistudio_art_scripts() {
 	wp_enqueue_style( 'didistudio-art-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'swiper-css', get_template_directory_uri() . '/vendor/css/swiper-bundle.min.css', array(), _S_VERSION );
 
     wp_enqueue_style( 'didistudio-art-main-style', get_template_directory_uri() . '/assets/css/style.css', array(), _S_VERSION );
-
+    // COMPONENT
     wp_register_style('didistudio-art-component-home-image', get_template_directory_uri() . '/assets/css/components/home-image.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-component-about-me', get_template_directory_uri() . '/assets/css/components/about-me.css', array(), '1.0', 'all');
-
+    wp_register_style('didistudio-art-component-home-card-portfolio', get_template_directory_uri() . '/assets/css/components/home.card-portfolio.css', array(), '1.0', 'all');
+    // BLOCK
+    wp_register_style('didistudio-art-component-slider-portfolio', get_template_directory_uri() . '/assets/css/block/slider-portfolio.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-block-services', get_template_directory_uri() . '/assets/css/block/services.css', array(), '1.0', 'all');
+    // LAYOUT
     wp_register_style('didistudio-art-page-home', get_template_directory_uri() . '/assets/css/page/home.css', array(), '1.0', 'all');
 
 	wp_enqueue_script( 'didistudio-art-js', get_template_directory_uri() . '/assets/js/script.js', array(), _S_VERSION, true );
-	//wp_enqueue_script( 'didistudio-art-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/vendor/js/swiper-bundle.min.js', array(), _S_VERSION, true );
+
+	wp_register_script( 'js-slider-portfolio', get_template_directory_uri() . '/assets/js/portfolio-slider.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'didistudio_art_scripts' );
-
-// ФУНКЦИЯ ДЛЯ DEV СЕРВЕРА РАЗРАБОТКИ
-function change_domain_in_assets($src) {
-    // Проверяем, если домен — это dev-окружение (wsl)
-    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
-        // Заменяем только первое вхождение 'didistudio.art' на 'didistudio.wsl'
-        $src = preg_replace('/didistudio\.art/', 'didistudio.wsl', $src, 1);
-    }
-    return $src;
-}
-
-add_filter('style_loader_src', 'change_domain_in_assets');
-add_filter('script_loader_src', 'change_domain_in_assets');
 
 /*
  * Страница настроек
@@ -259,3 +253,18 @@ add_action('init', function () {
     );
     register_taxonomy('section', ['portfolio'], $args);
 });
+
+
+
+// ФУНКЦИЯ ДЛЯ DEV СЕРВЕРА РАЗРАБОТКИ
+function change_domain_in_assets($src) {
+    // Проверяем, если домен — это dev-окружение (wsl)
+    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
+        // Заменяем только первое вхождение 'didistudio.art' на 'didistudio.wsl'
+        $src = preg_replace('/didistudio\.art/', 'didistudio.wsl', $src, 1);
+    }
+    return $src;
+}
+
+add_filter('style_loader_src', 'change_domain_in_assets');
+add_filter('script_loader_src', 'change_domain_in_assets');

@@ -16,7 +16,7 @@
                     <p class="h3">Диана Свинцова</p>
                     <p class="h3 h3--c-200">Директор, графический дизайнер</p>
                 </div>
-                <img src="/wp-content/uploads/2025/03/author.jpg" alt="Диана Свинцова" width="336" height="183">
+                <img src="/wp-content/uploads/2025/03/author.jpg" alt="Диана Свинцова" width="900" height="491">
             </div>
         </div>
         <div class="about-me__row">

@@ -8,7 +8,7 @@
 <?php if (!empty($args)): ?>
     <article class="home card-portfolio">
         <div class="home card-portfolio__src">
-            <img src="<?php echo $args['preview_picture'];?>" alt="" class="home.card-portfolio__image">
+            <img width="440" height="530" src="<?php echo $args['preview_picture'];?>" alt="" class="home.card-portfolio__image">
         </div>
         <div class="home card-portfolio__content">
             <div class="home card-portfolio__title h2">

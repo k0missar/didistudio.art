@@ -26,12 +26,11 @@ body {
     font-family: var(--f-body);
     font-weight: 500;
     font-size: 12px;
-    //leading-trim: Cap height;
     line-height: 100%;
     color: var(--c-s-200);
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 700px) {
     body {
         font-size: 14px;
     }
@@ -59,7 +58,7 @@ h2, .h2 {font-size: 18px}
 h3, .h3 {font-size: 12px}
 h4, .h4 {font-size: 8px}
 
-@media (min-width: 1200px) {
+@media (min-width: 700px) {
     h1, .h1 {font-size: 37px}
     h2, .h2 {font-size: 22px}
     h3, .h3 {font-size: 14px}
@@ -73,7 +72,7 @@ a {
     font-weight: 700;
     text-decoration: underline;
 
-    @media (min-width: 1200px) {
+    @media (min-width: 700px) {
         font-size: 15px;
     }
 }
@@ -103,10 +102,6 @@ p {}
 
 .wrapper {
     max-width: 1360px;
-
-    &--relative {
-        position: relative;
-    }
 
     @media (min-width: 1360px) {
         margin-left: auto;

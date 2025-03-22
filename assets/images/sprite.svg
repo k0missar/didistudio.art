@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol id="plus" width="24" height="25" viewBox="0 0 24 25" fill="none">
+        <line x1="8.74228e-08" y1="12.4668" x2="24" y2="12.4668" stroke="#1C1C1C" stroke-width="2"/>
+        <line class="last" x1="12" y1="0.466797" x2="12" y2="24.4668" stroke="#1C1C1C" stroke-width="2"/>
+    </symbol>
+</svg>

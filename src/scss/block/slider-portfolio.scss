@@ -1,16 +1,6 @@
 @use '../var';
 
-.portfolio-block {
-    margin-bottom: 120px;
-
-    @media (min-width: 700px) {
-        margin-bottom: 140px;
-    }
-
-    @media (min-width: 1200px) {
-        margin-bottom: 160px;
-    }
-}
+.portfolio-block {}
 
 .portfolio-block__wrapper {
     @media (min-width: 1200px) {

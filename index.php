@@ -1,4 +1,5 @@
 <?php
+ob_start();
 /**
  * The main template file
  *
@@ -26,31 +27,33 @@ get_header();
             get_template_part('template-parts/components/about-me', '', ['class' => 'home__about-me']);
         ?>
 
-        <?php
-        if ( have_posts() ) :
+        <section class="home__portfolio-block">
+            <?php
+                get_template_part('template-parts/block/slider-portfolio', '', []);
+            ?>
+        </section>
 
-            if ( is_home() && ! is_front_page() ) :
-                ?>
-                <header>
-                    <h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-                </header>
-                <?php
-            endif;
-
-            while ( have_posts() ) :
-                the_post();
-                get_template_part( 'template-parts/content', get_post_type() );
-            endwhile;
-
-        else :
-
-            get_template_part( 'template-parts/content', 'none' );
-
-        endif;
-        ?>
+        <section class="home__service">
+            <?php
+                get_template_part('template-parts/block/services', '', []);
+            ?>
+        </section>
     </div>
 </main>
 
 <?php
-get_sidebar();
 get_footer();
+
+
+function modify_final_output()
+{
+    $html = ob_get_clean(); // Получаем весь HTML-код страницы
+    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
+        if (strpos($html, '<use') !== false) {
+            $html = preg_replace('/(<use\s+href=")http:\/\/didistudio\.art/', '$1http://didistudio.wsl', $html);
+        }
+    }
+    echo $html; // Выводим изменённый HTML
+}
+
+modify_final_output();

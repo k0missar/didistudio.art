@@ -1,3 +1,5 @@
+
+// СКРИПТ ДЛЯ РАЗРАБОТКИ
 (function reloadWatcher() {
     let lastModified = null;
 

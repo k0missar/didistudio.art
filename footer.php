@@ -12,8 +12,8 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<h1>САЙТ</h1>
-	</footer><!-- #colophon -->
+        <?php echo '<pre>' . print_r('', 1) . '</pre>'; ?>
+	</footer>
 
 <?php wp_footer(); ?>
 

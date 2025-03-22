@@ -1,5 +1,6 @@
 <?php
     wp_enqueue_style('didistudio-art-component-slider-portfolio');
+    wp_enqueue_script('js-slider-portfolio');
 
     $arParam = [
         'post_type' => 'portfolio',
@@ -10,7 +11,7 @@
 
 <?php if ($arResult->have_posts()): ?>
 
-    <section class="portfolio-block">
+    <div class="portfolio-block">
         <div class="portfolio-block__wrapper wrapper">
             <div class="portfolio-block__content">
                 <h2 class="portfolio-block__title h1">Портфолио</h2>
@@ -42,40 +43,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <?php wp_reset_postdata(); ?>
 <?php endif; ?>
 
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        let portfolioSlider = null;
-
-        function initOrDestroyPortfolioSlider() {
-            const windowWidth = window.innerWidth;
-
-            if (windowWidth <= 1200 && portfolioSlider === null) {
-                portfolioSlider = new Swiper('.js-portfolio-slider', {
-                    loop: true,
-                    spaceBetween: 20,
-                    slidesPerView: 'auto',
-                    observer: true,
-                    observeParents: true,
-                    observeSlideChildren: true,
-                    resizeObserver: true,
-                });
-            } else if (windowWidth > 1200 && portfolioSlider !== null) {
-                portfolioSlider.destroy(true, true);
-                portfolioSlider = null;
-            }
-        }
-
-        initOrDestroyPortfolioSlider();
-
-        window.addEventListener('resize', () => {
-            clearTimeout(window.portfolioSliderTimeout);
-            window.portfolioSliderTimeout = setTimeout(initOrDestroyPortfolioSlider, 200);
-        });
-    });
-</script>
 

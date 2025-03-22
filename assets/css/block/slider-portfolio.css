@@ -1,17 +1,3 @@
-.portfolio-block {
-  margin-bottom: 120px;
-}
-@media (min-width: 700px) {
-  .portfolio-block {
-    margin-bottom: 140px;
-  }
-}
-@media (min-width: 1200px) {
-  .portfolio-block {
-    margin-bottom: 160px;
-  }
-}
-
 @media (min-width: 1200px) {
   .portfolio-block__wrapper {
     display: grid;
