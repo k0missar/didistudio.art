@@ -34,3 +34,17 @@
     margin-bottom: 160px;
   }
 }
+
+.home__progress {
+  margin-bottom: 120px;
+}
+@media (min-width: 700px) {
+  .home__progress {
+    margin-bottom: 140px;
+  }
+}
+@media (min-width: 1200px) {
+  .home__progress {
+    margin-bottom: 160px;
+  }
+}

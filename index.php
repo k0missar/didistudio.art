@@ -38,6 +38,12 @@ get_header();
                 get_template_part('template-parts/block/services', '', []);
             ?>
         </section>
+
+        <section class="home__progress">
+            <?php
+            get_template_part('template-parts/block/progress', '', []);
+            ?>
+        </section>
     </div>
 </main>
 

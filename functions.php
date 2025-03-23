@@ -6,6 +6,8 @@
  *
  * @package didistudio.art
  */
+require_once get_template_directory() . '/classes/PrimaryMenu.php';
+
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
@@ -49,9 +51,11 @@ function didistudio_art_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'didistudio-art' ),
+			'primary' => 'Топ меню',
 		)
 	);
+
+    require_once 'inc/primary-menu.php';
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -149,6 +153,7 @@ function didistudio_art_scripts() {
     // BLOCK
     wp_register_style('didistudio-art-component-slider-portfolio', get_template_directory_uri() . '/assets/css/block/slider-portfolio.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-block-services', get_template_directory_uri() . '/assets/css/block/services.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-block-progress', get_template_directory_uri() . '/assets/css/block/progress.css', array(), '1.0', 'all');
     // LAYOUT
     wp_register_style('didistudio-art-page-home', get_template_directory_uri() . '/assets/css/page/home.css', array(), '1.0', 'all');
 
@@ -156,6 +161,7 @@ function didistudio_art_scripts() {
 	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/vendor/js/swiper-bundle.min.js', array(), _S_VERSION, true );
 
 	wp_register_script( 'js-slider-portfolio', get_template_directory_uri() . '/assets/js/portfolio-slider.js', array(), _S_VERSION, true );
+	wp_register_script( 'js-slider-progress', get_template_directory_uri() . '/assets/js/progress-slider.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -176,17 +182,17 @@ if( function_exists('acf_add_options_page') ) {
         'redirect'		=> false
     ));
 
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Настройки шапки',
-        'menu_title'	=> 'Шапка',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Настройки подвала',
-        'menu_title'	=> 'Подвал',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
+//    acf_add_options_sub_page(array(
+//        'page_title' 	=> 'Настройки шапки',
+//        'menu_title'	=> 'Шапка',
+//        'parent_slug'	=> 'theme-general-settings',
+//    ));
+//
+//    acf_add_options_sub_page(array(
+//        'page_title' 	=> 'Настройки подвала',
+//        'menu_title'	=> 'Подвал',
+//        'parent_slug'	=> 'theme-general-settings',
+//    ));
 
 }
 
@@ -252,6 +258,80 @@ add_action('init', function () {
         'hierarchical'      => true,
     );
     register_taxonomy('section', ['portfolio'], $args);
+});
+
+/*
+ * Регистрируем пользовательский тип записи Услуги
+ */
+add_action('init', function () {
+    $labels = [
+        'name' => 'Услуги',
+        'menu_name' => 'Услуги',
+        'singular_name' => 'Услуги',
+        'add_new' => 'Добавить услугу',
+        'add_new_item' => 'Добавить новую услугу',
+        'edit_item' => 'Редактировать услугу',
+        'new_item' => 'Новая услуга',
+        'all_items' => 'Все услуги',
+        'view_item' => 'Посмотреть услугу',
+        'search_items' => 'Найти услугу',
+        'not_found' =>  'Ничего не найдено',
+        'not_found_in_trash' => 'В корзине не найдено'
+    ];
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => false,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => [
+            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+        ],
+    ];
+    register_post_type('service', $args);
+});
+
+/*
+ * Регистрируем пользовательский тип записи Достижения
+ */
+add_action('init', function () {
+    $labels = [
+        'name' => 'Достижения',
+        'menu_name' => 'Достижения',
+        'singular_name' => 'Достижения',
+        'add_new' => 'Добавить достижение',
+        'add_new_item' => 'Добавить новое достижение',
+        'edit_item' => 'Редактировать достижение',
+        'new_item' => 'Новое достижение',
+        'all_items' => 'Все достижения',
+        'view_item' => 'Посмотреть достижение',
+        'search_items' => 'Найти достижение',
+        'not_found' =>  'Ничего не найдено',
+        'not_found_in_trash' => 'В корзине не найдено'
+    ];
+    $args = [
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => false,
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => [
+            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+        ],
+    ];
+    register_post_type('progress', $args);
 });
 
 

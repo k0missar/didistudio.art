@@ -22,35 +22,58 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header>
-    <div class="site-branding">
-        <?php
-        the_custom_logo();
-        if ( is_front_page() && is_home() ) :
-            ?>
-            <h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-            <?php
-        else :
-            ?>
-            <p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-            <?php
-        endif;
-        $didistudio_art_description = get_bloginfo( 'description', 'display' );
-        if ( $didistudio_art_description || is_customize_preview() ) :
-            ?>
-            <p class="site-description"><?php echo $didistudio_art_description; ?></p>
-        <?php endif; ?>
+<header class="header">
+    <div class="container">
+        <div class="header__wrapper">
+            <div class="header__logo logo">
+                <a href="/">
+                    <img
+                        src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>"
+                        alt=""
+                        srcset="
+                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo-mobile.svg';?> 700w,
+                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo-tablet.svg';?> 1200w,
+                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?> 2000w"
+                        sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 2000px">
+                </a>
+            </div>
+            <nav class="header__menu js-header-menu">
+                <div class="header__menu-mobile">
+                    <div class=header__menu-mobile">Меню</div>
+                    <div class="header__menu-close-btn js-menu-close-btn">
+                        <div class="--close-line"></div>
+                        <div class="--close-line --close-line--"></div>
+                    </div>
+                </div>
+                <?php wp_menu_primary(); ?>
+            </nav>
+            <div class="header__contact">
+                <a href="tel:+70000000000">+7 (000) 000 00 00</a>
+            </div>
+            <div class="header__menu-btn js-menu-btn">
+                <div class="--line"></div>
+                <div class="--line"></div>
+                <div class="--line"></div>
+            </div>
+        </div>
     </div>
-
-    <nav id="site-navigation" class="main-navigation">
-        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'didistudio-art' ); ?></button>
-        <?php
-        wp_nav_menu(
-            array(
-                'theme_location' => 'menu-1',
-                'menu_id'        => 'primary-menu',
-            )
-        );
-        ?>
-    </nav>
 </header>
+
+<script>
+    const mBody = document.querySelector('body')
+    const menu = document.querySelector('.js-header-menu')
+    const menuBtn = document.querySelector('.js-menu-btn')
+    const menuCloseBtn = document.querySelector('.js-menu-close-btn')
+
+    if(menu && menuBtn && menuCloseBtn) {
+        menuBtn.addEventListener('click', ()=> {
+            menu.classList.add('header__menu--show')
+            mBody.style.overflow = 'hidden'
+        })
+
+        menuCloseBtn.addEventListener('click', ()=> {
+            menu.classList.remove('header__menu--show')
+            mBody.style.overflow = 'auto'
+        })
+    }
+</script>
