@@ -25,11 +25,10 @@
                     <?php while ($arResult->have_posts()): $arResult->the_post(); ?>
                         <div class="portfolio-slider__slide swiper-slide">
                             <?php
-                                global $post;
                                 $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'full');
 
                                 $arPost['title'] = $post->post_title;
-                                $arPost['link'] = $post->guid;
+                                $arPost['link'] = get_permalink($post->ID);
                                 $arPost['description'] = get_field('portfolio_description');
 
                                 if ($thumbnail_url) {

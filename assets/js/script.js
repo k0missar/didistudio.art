@@ -1,3 +1,20 @@
+const mBody = document.querySelector('body')
+const menu = document.querySelector('.js-header-menu')
+const menuBtn = document.querySelector('.js-menu-btn')
+const menuCloseBtn = document.querySelector('.js-menu-close-btn')
+
+if(menu && menuBtn && menuCloseBtn) {
+    menuBtn.addEventListener('click', ()=> {
+        menu.classList.add('header__menu--show')
+        mBody.style.overflow = 'hidden'
+    })
+
+    menuCloseBtn.addEventListener('click', ()=> {
+        menu.classList.remove('header__menu--show')
+        mBody.style.overflow = 'auto'
+    })
+}
+
 (function reloadWatcher() {
     let lastModified = null;
 

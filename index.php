@@ -22,10 +22,17 @@ get_header();
 ?>
 <main>
     <div class="container">
-        <?php
-            get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image']);
-            get_template_part('template-parts/components/about-me', '', ['class' => 'home__about-me']);
-        ?>
+        <section>
+            <?php
+                get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image']);
+            ?>
+        </section>
+
+        <section>
+            <?php
+                get_template_part('template-parts/components/about-me', '', ['class' => 'home__about-me']);
+            ?>
+        </section>
 
         <section class="home__portfolio-block">
             <?php
@@ -44,6 +51,12 @@ get_header();
             get_template_part('template-parts/block/progress', '', []);
             ?>
         </section>
+
+        <section>
+            <?php
+            get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image home-image--min']);
+            ?>
+        </section>
     </div>
 </main>
 
@@ -57,6 +70,12 @@ function modify_final_output()
     if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
         if (strpos($html, '<use') !== false) {
             $html = preg_replace('/(<use\s+href=")http:\/\/didistudio\.art/', '$1http://didistudio.wsl', $html);
+        }
+    }
+
+    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
+        if (strpos($html, '<a href') !== false) {
+            $html = preg_replace('/(<a\s+href=")http:\/\/didistudio\.art/', '$1http://didistudio.wsl', $html);
         }
     }
     echo $html; // Выводим изменённый HTML

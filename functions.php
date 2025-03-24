@@ -8,6 +8,10 @@
  */
 require_once get_template_directory() . '/classes/PrimaryMenu.php';
 
+define('CONTACT_EMAIL', get_field('contact_email', 'option'));
+define('CONTACT_PHONE', get_field('contact_phone', 'option'));
+define('CONTACT_TELEGRAM', get_field('contact_telegram', 'option'));
+define('CONTACT_WHATSAPP', get_field('contact_whatsapp', 'option'));
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
@@ -229,7 +233,7 @@ add_action('init', function () {
         'supports' => [
             'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
         ],
-        'taxonomies' => ['genre'],
+        'taxonomies' => ['works'],
     ];
     register_post_type('portfolio', $args);
 });
@@ -334,7 +338,18 @@ add_action('init', function () {
     register_post_type('progress', $args);
 });
 
+function format_phone($phone) {
+    // Удаляем все лишние символы
+    $phone = preg_replace('/[^0-9]/', '', $phone);
 
+    // Если номер начинается с 7 и длина 11 символов, форматируем
+    if (strlen($phone) === 11 && $phone[0] === '7') {
+        return '+7 (' . substr($phone, 1, 3) . ') ' . substr($phone, 4, 3) . ' ' . substr($phone, 7, 2) . ' ' . substr($phone, 9, 2);
+    }
+
+    // Если формат не совпадает — возвращаем без изменений
+    return $phone;
+}
 
 // ФУНКЦИЯ ДЛЯ DEV СЕРВЕРА РАЗРАБОТКИ
 function change_domain_in_assets($src) {

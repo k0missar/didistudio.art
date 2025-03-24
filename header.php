@@ -46,9 +46,24 @@
                     </div>
                 </div>
                 <?php wp_menu_primary(); ?>
+                <div class="header__contact-mobile contact-mobile">
+                    <div>
+                        <?php if (CONTACT_TELEGRAM): ?>
+                            <a class="contact-mobile__item" href="https://t.me/<?php echo CONTACT_TELEGRAM;?>">telegram</a>
+                        <?php endif; ?>
+                        <?php if (CONTACT_WHATSAPP): ?>
+                            <a class="contact-mobile__item" href="https://api.whatsapp.com/send/?phone=<?php echo CONTACT_WHATSAPP;?>&text&type=phone_number&app_absent=0">whatsapp</a>
+                        <?php endif; ?>
+                    </div>
+                    <?php if (CONTACT_PHONE): ?>
+                        <a class="contact-mobile__item contact-mobile__item--phone" href="tel:+<?php echo CONTACT_PHONE;?>"><?php echo format_phone(CONTACT_PHONE);?></a>
+                    <?php endif; ?>
+                </div>
             </nav>
             <div class="header__contact">
-                <a href="tel:+70000000000">+7 (000) 000 00 00</a>
+                <?php if (CONTACT_PHONE): ?>
+                    <a href="tel:+<?php echo CONTACT_PHONE;?>"><?php echo format_phone(CONTACT_PHONE);?></a>
+                <?php endif; ?>
             </div>
             <div class="header__menu-btn js-menu-btn">
                 <div class="--line"></div>
@@ -58,22 +73,3 @@
         </div>
     </div>
 </header>
-
-<script>
-    const mBody = document.querySelector('body')
-    const menu = document.querySelector('.js-header-menu')
-    const menuBtn = document.querySelector('.js-menu-btn')
-    const menuCloseBtn = document.querySelector('.js-menu-close-btn')
-
-    if(menu && menuBtn && menuCloseBtn) {
-        menuBtn.addEventListener('click', ()=> {
-            menu.classList.add('header__menu--show')
-            mBody.style.overflow = 'hidden'
-        })
-
-        menuCloseBtn.addEventListener('click', ()=> {
-            menu.classList.remove('header__menu--show')
-            mBody.style.overflow = 'auto'
-        })
-    }
-</script>
