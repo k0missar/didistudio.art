@@ -7,11 +7,9 @@
  * @package didistudio.art
  */
 require_once get_template_directory() . '/classes/PrimaryMenu.php';
-
-define('CONTACT_EMAIL', get_field('contact_email', 'option'));
-define('CONTACT_PHONE', get_field('contact_phone', 'option'));
-define('CONTACT_TELEGRAM', get_field('contact_telegram', 'option'));
-define('CONTACT_WHATSAPP', get_field('contact_whatsapp', 'option'));
+require_once get_template_directory() . '/classes/PortfolioMenu.php';
+require_once get_template_directory() . '/classes/FooterMenu.php';
+require_once get_template_directory() . '/inc/constants.php';
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
@@ -56,6 +54,8 @@ function didistudio_art_setup() {
 	register_nav_menus(
 		array(
 			'primary' => 'Топ меню',
+            'portfolio-menu' => 'Меню для портфолио',
+            'footer-menu' => 'Меню в подвале',
 		)
 	);
 
@@ -154,10 +154,19 @@ function didistudio_art_scripts() {
     wp_register_style('didistudio-art-component-home-image', get_template_directory_uri() . '/assets/css/components/home-image.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-component-about-me', get_template_directory_uri() . '/assets/css/components/about-me.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-component-home-card-portfolio', get_template_directory_uri() . '/assets/css/components/home.card-portfolio.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-archive-card-portfolio', get_template_directory_uri() . '/assets/css/components/archive.card-portfolio.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-article-portfolio', get_template_directory_uri() . '/assets/css/components/article-portfolio.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-card-logotype', get_template_directory_uri() . '/assets/css/components/card-logotype.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-portfolio-menu', get_template_directory_uri() . '/assets/css/components/portfolio-menu.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-component-similar-card', get_template_directory_uri() . '/assets/css/components/similar-card.css', array(), '1.0', 'all');
     // BLOCK
     wp_register_style('didistudio-art-component-slider-portfolio', get_template_directory_uri() . '/assets/css/block/slider-portfolio.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-block-services', get_template_directory_uri() . '/assets/css/block/services.css', array(), '1.0', 'all');
     wp_register_style('didistudio-art-block-progress', get_template_directory_uri() . '/assets/css/block/progress.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-similar-post', get_template_directory_uri() . '/assets/css/block/similar-post.css', array(), '1.0', 'all');
+    // TAXONOMY
+    wp_register_style('didistudio-art-taxonomy-portfolio-work', get_template_directory_uri() . '/assets/css/taxonomy/portfolio-work.css', array(), '1.0', 'all');
+    wp_register_style('didistudio-art-taxonomy-portfolio-logotype', get_template_directory_uri() . '/assets/css/taxonomy/portfolio-logotype.css', array(), '1.0', 'all');
     // LAYOUT
     wp_register_style('didistudio-art-page-home', get_template_directory_uri() . '/assets/css/page/home.css', array(), '1.0', 'all');
 
@@ -185,24 +194,37 @@ if( function_exists('acf_add_options_page') ) {
         'capability'	=> 'edit_posts',
         'redirect'		=> false
     ));
-
-//    acf_add_options_sub_page(array(
-//        'page_title' 	=> 'Настройки шапки',
-//        'menu_title'	=> 'Шапка',
-//        'parent_slug'	=> 'theme-general-settings',
-//    ));
-//
-//    acf_add_options_sub_page(array(
-//        'page_title' 	=> 'Настройки подвала',
-//        'menu_title'	=> 'Подвал',
-//        'parent_slug'	=> 'theme-general-settings',
-//    ));
-
 }
 
-/*
- * Регистрируем пользовательский тип записи Портфолио
- */
+// ПОРТФОЛИО
+add_action('init', function () {
+    $labels = [
+        'name' => 'Раздел',
+        'singular_name' => 'Раздел',
+        'menu_name' => 'Раздел',
+        'all_items' => 'Все разделы',
+        'edit_item' => 'Редактировать раздел',
+        'view_item' => 'Посмотреть раздел',
+        'update_item' => 'Сохранить раздел',
+        'add_new_item' => 'Добавить новый раздел',
+        'parent_item' => 'Родительский раздел',
+        'search_items' => 'Поиск по разделам',
+        'back_to_items' => 'Назад на страницу разделов',
+    ];
+
+    $args = [
+        'labels' => $labels,
+        'show_admin_column' => true,
+        'hierarchical' => true,
+        'rewrite' => [
+            'slug' => 'portfolio-section',
+        ],
+    ];
+
+    register_taxonomy('portfolio-section', ['portfolio'], $args);
+});
+
+// Регистрируем тип записи "portfolio"
 add_action('init', function () {
     $labels = [
         'name' => 'Портфолио',
@@ -215,9 +237,10 @@ add_action('init', function () {
         'all_items' => 'Все работы',
         'view_item' => 'Посмотреть работу',
         'search_items' => 'Найти работу',
-        'not_found' =>  'Ничего не найдено',
-        'not_found_in_trash' => 'В корзине не найдено'
+        'not_found' => 'Ничего не найдено',
+        'not_found_in_trash' => 'В корзине не найдено',
     ];
+
     $args = [
         'labels' => $labels,
         'public' => true,
@@ -225,48 +248,73 @@ add_action('init', function () {
         'show_ui' => true,
         'show_in_menu' => true,
         'query_var' => true,
-        'rewrite' => true,
+        'rewrite' => [
+            'slug' => 'portfolio-section/%portfolio-section%',
+            'with_front' => false
+        ],
         'capability_type' => 'post',
         'has_archive' => true,
         'hierarchical' => false,
         'menu_position' => null,
         'supports' => [
-            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields',
         ],
-        'taxonomies' => ['works'],
+        'taxonomies' => ['portfolio-section'],
     ];
+
     register_post_type('portfolio', $args);
 });
 
-/*
- * Регистрируем иерархическую таксономию по портфолио
- */
+add_filter('post_type_link', function ($post_link, $post) {
+    if ($post->post_type === 'portfolio') {
+        $terms = get_the_terms($post->ID, 'portfolio-section');
+        if ($terms && !is_wp_error($terms)) {
+            $post_link = str_replace('%portfolio-section%', $terms[0]->slug, $post_link);
+        } else {
+            $post_link = str_replace('%portfolio-section%', 'uncategorized', $post_link);
+        }
+    }
+    return $post_link;
+}, 10, 2);
+
 add_action('init', function () {
-    $labels = array(
-        'name'          => 'Раздел',
-        'singular_name' => 'Раздел',
-        'menu_name'     => 'Раздел' ,
-        'all_items'     => 'Все разделы',
-        'edit_item'     => 'Редактировать раздел',
-        'view_item'     => 'Посмотреть раздел',
-        'update_item'   => 'Сохранить раздел',
-        'add_new_item'  => 'Добавить новый раздел',
-        'parent_item'   => 'Родительский раздел',
-        'search_items'  => 'Поиск по разделам',
-        'back_to_items' => 'Назад на страницу разделов',
-        'most_used'     => 'Популярные разделы',
+    add_rewrite_rule(
+        '^portfolio-section/([^/]+)/([^/]+)/?$',
+        'index.php?portfolio=$matches[2]',
+        'top'
     );
-    $args = array(
-        'labels'            => $labels,
-        'show_admin_column' => true,
-        'hierarchical'      => true,
-    );
-    register_taxonomy('section', ['portfolio'], $args);
 });
 
 /*
  * Регистрируем пользовательский тип записи Услуги
  */
+add_action('init', function () {
+    $labels = [
+        'name' => 'Раздел',
+        'singular_name' => 'Раздел',
+        'menu_name' => 'Раздел',
+        'all_items' => 'Все разделы',
+        'edit_item' => 'Редактировать раздел',
+        'view_item' => 'Посмотреть раздел',
+        'update_item' => 'Сохранить раздел',
+        'add_new_item' => 'Добавить новый раздел',
+        'parent_item' => 'Родительский раздел',
+        'search_items' => 'Поиск по разделам',
+        'back_to_items' => 'Назад на страницу разделов',
+    ];
+
+    $args = [
+        'labels' => $labels,
+        'show_admin_column' => true,
+        'hierarchical' => true,
+        'rewrite' => [
+            'slug' => 'service-section',
+        ],
+    ];
+
+    register_taxonomy('service-section', ['service'], $args);
+});
+
 add_action('init', function () {
     $labels = [
         'name' => 'Услуги',
@@ -295,10 +343,32 @@ add_action('init', function () {
         'hierarchical' => false,
         'menu_position' => null,
         'supports' => [
-            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+            'title'
         ],
+        'taxonomies' => ['service-section'],
     ];
     register_post_type('service', $args);
+});
+
+// Добавляем поле в админку при редактировании терма
+add_action('service-section_edit_form_fields', function ($term) {
+    $value = get_term_meta($term->term_id, 'sort_order', true);
+    ?>
+    <tr class="form-field">
+        <th scope="row"><label for="sort_order">Сортировка</label></th>
+        <td>
+            <input type="number" name="sort_order" id="sort_order" value="<?php echo esc_attr($value); ?>" />
+            <p class="description">Чем меньше значение — тем выше в списке.</p>
+        </td>
+    </tr>
+    <?php
+});
+
+// Сохраняем значение при обновлении терма
+add_action('edited_service-section', function ($term_id) {
+    if (isset($_POST['sort_order'])) {
+        update_term_meta($term_id, 'sort_order', intval($_POST['sort_order']));
+    }
 });
 
 /*
@@ -332,7 +402,7 @@ add_action('init', function () {
         'hierarchical' => false,
         'menu_position' => null,
         'supports' => [
-            'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'
+            'title', 'excerpt', 'custom-fields'
         ],
     ];
     register_post_type('progress', $args);

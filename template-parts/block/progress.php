@@ -2,11 +2,13 @@
 wp_enqueue_style('didistudio-art-block-progress');
 wp_enqueue_script('js-slider-progress');
 
-//$arParam = [
-//    'post_type' => 'portfolio',
-//];
-//
-//$arResult = new WP_Query($arParam);
+$args = array(
+    'post_type'      => 'progress', // Тип записи
+    'posts_per_page' => -1,         // Все записи
+    'post_status'    => 'publish',  // Только опубликованные
+);
+
+$query = new WP_Query($args);
 ?>
 <div class="progress">
     <div class="progress__wrapper wrapper">
@@ -19,30 +21,22 @@ wp_enqueue_script('js-slider-progress');
         <div class="progress__content">
             <div class="progress-slider js-progress-slider swiper">
                 <ul class="progress__list swiper-wrapper">
-                    <li class="progress__item swiper-slide" data-progress-count="01">
-                        <span class="h2">4 из 20</span>
-                        <p>
-                            4 вина из 20 продаются в торговых сетях по всей стране.
-                        </p>
-                    </li>
-                    <li class="progress__item swiper-slide" data-progress-count="02">
-                        <span class="h2">4 из 20</span>
-                        <p>
-                            4 вина из 20 продаются в торговых сетях по всей стране.
-                        </p>
-                    </li>
-                    <li class="progress__item swiper-slide" data-progress-count="03">
-                        <span class="h2">4 из 20</span>
-                        <p>
-                            4 вина из 20 продаются в торговых сетях по всей стране.
-                        </p>
-                    </li>
-                    <li class="progress__item swiper-slide" data-progress-count="04">
-                        <span class="h2">4 из 20</span>
-                        <p>
-                            4 вина из 20 продаются в торговых сетях по всей стране.
-                        </p>
-                    </li>
+                    <?php
+                        if ($query->have_posts()) : $count = 1;
+                            while ($query->have_posts()) : $query->the_post();
+                                global $post;
+                        //echo '<pre>' . print_r($post, 1) . '</pre>';
+                    ?>
+                        <li class="progress__item swiper-slide" data-progress-count="<?= str_pad($count, 2, 0, STR_PAD_LEFT) ?>">
+                            <span class="h2"><?php the_title()  ?></span>
+                            <?php the_excerpt(); ?>
+                        </li>
+                    <?php 
+                        $count++;
+                        endwhile;
+                        wp_reset_postdata();
+                        endif;
+                    ?>
                 </ul>
             </div>
         </div>

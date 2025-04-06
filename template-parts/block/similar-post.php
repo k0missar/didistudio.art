@@ -1,27 +1,19 @@
 <?php
-    wp_enqueue_style('didistudio-art-component-slider-portfolio');
-    wp_enqueue_script('js-slider-portfolio');
+wp_enqueue_style('didistudio-art-similar-post');
 
-    $arParam = [
-        'post_type' => 'portfolio',
-    ];
+$arParam = [
+    'post_type' => 'portfolio',
+];
 
-    $arResult = new WP_Query($arParam);
+$arResult = new WP_Query($arParam);
 ?>
 
 <?php if ($arResult->have_posts()): ?>
 
-    <div class="portfolio-block">
-        <div class="portfolio-block__wrapper wrapper">
-            <div class="portfolio-block__content">
-                <h2 class="portfolio-block__title h1">Портфолио</h2>
-                <div class="portfolio-block__description">
-                    Наша команда стремится к успеху, тщательно анализируя сферу вашего бизнеса и рынок, что позволяет нам выявить ключевые задачи и предложить эффективные решения.
-                </div>
-                <a href="#" class="portfolio-block__link">Смотреть все</a>
-            </div>
-            <div class="portfolio-slider js-portfolio-slider">
-                <div class="portfolio-slider__wrapper swiper-wrapper">
+    <div class="similar-post">
+        <div class="container">
+            <div class="similar-post__wrapper wrapper">
+                <div class="similar-post__list">
                     <?php $count = 0; // Счетчик записей ?>
                     <?php while ($arResult->have_posts()): $arResult->the_post(); ?>
                         <?php
@@ -40,7 +32,7 @@
 
                         if ($has_work):
                             $count++; // Увеличиваем счетчик
-                            if ($count > 4) break; // Останавливаем цикл после 4 записей
+                            if ($count > 3) break; // Останавливаем цикл после 4 записей
 
                             $thumbnail_url = get_the_post_thumbnail_url($post->ID, 'full');
                             $arPost = [
@@ -50,8 +42,8 @@
                                 'preview_picture' => $thumbnail_url ?: '',
                             ];
                             ?>
-                            <div class="portfolio-slider__slide swiper-slide">
-                                <?php get_template_part('template-parts/components/home.card-portfolio', '', $arPost); ?>
+                            <div class="similar-post__item">
+                                <?php get_template_part('template-parts/components/similar-card', '', $arPost); ?>
                             </div>
                         <?php endif; ?>
                     <?php endwhile; ?>
@@ -62,5 +54,3 @@
 
     <?php wp_reset_postdata(); ?>
 <?php endif; ?>
-
-

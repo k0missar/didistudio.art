@@ -6,27 +6,34 @@
 
 get_header(); ?>
 
-<main id="primary" class="site-main">
-    <?php if (have_posts()) : ?>
-        <header class="page-header">
-            <h1 class="page-title">Наше портфолио</h1>
-        </header>
+<main class="portfolio-archive">
+    <div class="portfolio-archive__list">
+        <?php if (have_posts()) : $count = 1;?>
+            <div class="portfolio-archive__items">
 
-        <div class="portfolio-items">
-            <?php while (have_posts()) : the_post(); ?>
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    <a href="<?php the_permalink(); ?>">
-                        <?php the_post_thumbnail('medium'); ?>
-                        <h2><?php the_title(); ?></h2>
-                    </a>
-                </article>
-            <?php endwhile; ?>
-        </div>
+                <?php while (have_posts()) : the_post(); ?>
 
-        <?php the_posts_navigation(); ?>
-    <?php else : ?>
-        <p>Работы не найдены.</p>
-    <?php endif; ?>
+                <?php
+                    global $post;
+                    $resPost = get_post($post->ID);
+                    $arPost['id'] = $resPost->ID;
+                    $arPost['number'] = $count;
+                    $arPost['title'] = $resPost->post_title;
+                    $arPost['post_excerpt'] = $resPost->post_excerpt;
+                    $arPost['link'] = get_permalink($post->ID);
+                    $arPost['preview_picture'] = get_the_post_thumbnail_url($post->ID, 'full');
+                ?>
+
+                    <?php get_template_part('template-parts/components/archive.card-portfolio', '', $arPost); ?>
+                    <?php $count++; ?>
+                <?php endwhile; ?>
+            </div>
+
+            <?php //the_posts_navigation(); ?>
+        <?php else : ?>
+            <p>Работы не найдены.</p>
+        <?php endif; ?>
+    </div>
 </main>
 
 <?php get_footer(); ?>

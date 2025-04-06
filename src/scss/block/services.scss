@@ -17,6 +17,17 @@
     }
 }
 
+.service__description {
+    @media (min-width: 700px) {
+        width: clamp(360.9375px, 51.5625vw, 618.75px);
+        max-width: 396px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 290px;
+    }
+}
+
 // Услуги
 .service__price-block {
     border-top: 1px solid var(--c-s-200);
@@ -37,7 +48,12 @@
         z-index: 5;
 
         @media (min-width: 700px) {
-            grid-template-columns: .4888fr 1fr;
+            grid-template-columns: 166px 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 1200px) {
+            grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
         }
 
         span {

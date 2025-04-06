@@ -9,20 +9,16 @@
         <div class="about-me__row">
             <h2 class="h3 h3--c-200">Обо мне</h2>
             <div class="about-me__content">
-                <p class="h2">
+                <p class="h2 h2--lh">
                     “Я - Диана Свинцова, графический дизайнер с многолетним опытом работы. За это время я успела накопить знания в различных областях дизайна и собрать команду для работы над комплексными проектами.”
                 </p>
-                <div class="about-me__signature">
-                    <p class="h3">Диана Свинцова</p>
-                    <p class="h3 h3--c-200">Директор, графический дизайнер</p>
-                </div>
                 <img src="/wp-content/uploads/2025/03/author.jpg" alt="Диана Свинцова" width="900" height="491">
             </div>
         </div>
         <div class="about-me__row">
             <h2 class="h3 h3--c-200">О команде</h2>
             <div class="about-me__content">
-                <p class="h2">
+                <p class="h2 h2--lh">
                     Студия графического дизайна DIDI сегодня — это широкий спектр работ от создания фирменного стиля компании, дизайна продукции до контроля её производства.
                 </p>
                 <div class="about-me__content-grid">
@@ -37,7 +33,7 @@
                         </p>
                     </div>
                 </div>
-                <a href="#" class="about-me__link">Смотреть всё</a>
+<!--                <a href="#" class="about-me__link">Смотреть всё</a>-->
             </div>
         </div>
 

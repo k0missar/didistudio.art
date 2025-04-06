@@ -22,7 +22,7 @@ get_header();
 ?>
 <main>
     <div class="container">
-        <section>
+        <section class="home__image">
             <?php
                 get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image']);
             ?>

@@ -55,3 +55,9 @@
 // Подменю
 .menu__sub-menu {}
 
+.menu__sub-item {
+    @media (min-width: 700px) {
+        margin-bottom: 8px;
+    }
+}
+

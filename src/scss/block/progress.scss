@@ -17,15 +17,21 @@
 
 // Список достижений
 .progress__content {
-    @media (min-width: 1200px) {
+    @media (min-width: 700px) {
         display: grid;
-        grid-template-columns: .4888fr 1fr;
+        grid-template-columns: 166px 1fr;
+        gap: 20px;
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
     }
 }
 
 .progress-slider {
-    @media (min-width: 1200px) {
+    @media (min-width: 700px) {
         grid-column: 2/3;
+        margin-left: initial;
     }
 }
 

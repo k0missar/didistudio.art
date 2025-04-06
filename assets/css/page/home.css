@@ -1,3 +1,7 @@
+.home__image {
+  overflow: hidden;
+}
+
 .home__home-image {
   margin-bottom: 47px;
 }

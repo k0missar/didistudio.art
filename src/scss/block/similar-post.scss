@@ -1,0 +1,21 @@
+.similar-post {}
+
+.similar-post__wrapper {}
+
+.similar-post__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+
+    @media (min-width: 700px) {
+        row-gap: 40px;
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.similar-post__item {
+    width: min-content;
+}

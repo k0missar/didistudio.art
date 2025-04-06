@@ -65,7 +65,7 @@
 }
 @media (min-width: 1200px) {
   .portfolio-slider__slide.swiper-slide {
-    width: clamp(366.6666666667px, 30.5555555556vw, 488.8888888889px);
-    max-width: 440px;
+    width: initial;
+    max-width: initial;
   }
 }
