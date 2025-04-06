@@ -23,11 +23,14 @@ get_header();
             $arPost['link'] = get_permalink($post->ID);
             $arPost['preview_picture'] = get_the_post_thumbnail_url($post->ID, 'full');
             $arPost['post_content'] = $resPost->post_content;
+            $arPost['top_image'] = get_field('top_image');
             $arPost['content_block'] = [];
 
             if(have_rows('content_block')) {
                 while(have_rows('content_block')) {
                     the_row();
+
+                    $arContentBlock = [];
 
                     // Список маленьких изображений
                     if(have_rows('images_block_list')) {

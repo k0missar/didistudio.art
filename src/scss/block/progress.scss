@@ -9,10 +9,26 @@
     @media (min-width: 700px) {
         margin-bottom: 60px;
     }
+
+    @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
+        gap: 20px;
+    }
 }
 
 .progress__title {
     margin-bottom: 40px;
+
+    @media (min-width: 1200px) {
+        grid-column: 2/3;
+    }
+}
+
+.progress__description {
+    @media (min-width: 1200px) {
+        grid-column: 2/3;
+    }
 }
 
 // Список достижений

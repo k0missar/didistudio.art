@@ -11,8 +11,7 @@ $arResult = new WP_Query($arParam);
 <?php if ($arResult->have_posts()): ?>
 
     <div class="similar-post">
-        <div class="container">
-            <div class="similar-post__wrapper wrapper">
+            <div class="similar-post__wrapper">
                 <div class="similar-post__list">
                     <?php $count = 0; // Счетчик записей ?>
                     <?php while ($arResult->have_posts()): $arResult->the_post(); ?>

@@ -19,17 +19,18 @@
 @media (min-width: 700px) {
   .portfolio-menu__wrapper {
     display: grid;
-    grid-template-columns: 164px 1fr;
+    grid-template-columns: 166px 1fr;
+    gap: 20px;
   }
 }
 @media (min-width: 1200px) {
   .portfolio-menu__wrapper {
-    grid-template-columns: calc(219px + clamp(191.6666666667px, 15.9722222222vw, 255.5555555556px)) 1fr;
+    grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
   }
 }
-@media (min-width: 1600px) {
+@media (min-width: 1441px) {
   .portfolio-menu__wrapper {
-    grid-template-columns: calc(219px + clamp(399.1666666667px, 24.9479166667vw, 479px)) 1fr;
+    grid-template-columns: calc(min(460px + (100% - 1360px) / 2, 700px) - 20px) 1fr;
   }
 }
 

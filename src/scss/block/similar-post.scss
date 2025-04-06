@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 20px;
+    container-type: inline-size;
 
     @media (min-width: 700px) {
         row-gap: 40px;

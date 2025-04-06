@@ -125,7 +125,14 @@
 }
 @media (min-width: 700px) {
   .service__item {
-    grid-template-columns: 0.4888fr 1fr;
+    display: grid;
+    grid-template-columns: 166px 1fr;
+    gap: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .service__item {
+    grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
   }
 }
 .service__item span {

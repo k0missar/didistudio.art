@@ -11,9 +11,16 @@
   display: grid;
   grid-template-columns: 0.258fr 1fr;
 }
+@media (min-width: 700px) {
+  .archive.card-portfolio__wrapper {
+    grid-template-columns: 166px 1fr;
+    gap: 20px;
+  }
+}
 @media (min-width: 1200px) {
   .archive.card-portfolio__wrapper {
     grid-template-columns: 0.775fr 1fr 0.517fr;
+    gap: 0;
   }
 }
 

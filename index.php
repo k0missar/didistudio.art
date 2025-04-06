@@ -52,7 +52,7 @@ get_header();
             ?>
         </section>
 
-        <section>
+        <section class="home__image">
             <?php
             get_template_part('template-parts/components/home-image', '', ['class' => 'home__home-image home-image--min']);
             ?>

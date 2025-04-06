@@ -14,7 +14,7 @@ $query = new WP_Query($args);
     <div class="progress__wrapper wrapper">
         <div class="progress__header">
             <h2 class="progress__title h1">Достижения</h2>
-            <div class="h2">
+            <div class="h2 progress__description">
                 В 2024 году мы много трудились и достигли больших успехов. Делимся ими с вами!
             </div>
         </div>

@@ -8,11 +8,13 @@ wp_enqueue_style('didistudio-art-component-article-portfolio');
 <article class="article-portfolio container">
     <div class="article-portfolio__wrapper wrapper">
 
-        <header class="article-portfolio__header">
-            <div class="article-portfolio__detail-picture">
-                <img src="<?= $args['preview_picture'] ?>" alt="">
-            </div>
-        </header>
+        <?php if (!empty($args['top_image'])): ?>
+            <header class="article-portfolio__header">
+                <div class="article-portfolio__detail-picture">
+                    <img src="<?= $args['top_image'] ?>" alt="">
+                </div>
+            </header>
+        <?php endif; ?>
 
         <?php if (!empty($args['title'] || !empty($args['post_content']))): ?>
             <div class="article-portfolio__content">
@@ -73,9 +75,14 @@ wp_enqueue_style('didistudio-art-component-article-portfolio');
         <?php endif; ?>
     </div>
 </article>
-<aside>
-    <?php
-        get_template_part('template-parts/block/similar-post');
-    ?>
+<aside class="article-portfolio__aside">
+    <div class="container">
+        <div class="wrapper">
+            <h2 class="h1 article-portfolio__aside-title">Другие проекты</h2>
+            <?php
+                get_template_part('template-parts/block/similar-post');
+            ?>
+        </div>
+    </div>
 </aside>
 

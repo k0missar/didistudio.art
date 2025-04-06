@@ -2,7 +2,9 @@
 
 .similar-card {
     width: min-content;
+    max-width: 100cqw;
     position: relative;
+    overflow: hidden;
 }
 
 .similar-card__src {
@@ -35,7 +37,9 @@
 .similar-card__content {}
 
 .similar-card__title {
-    margin-bottom: 13px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
     text-decoration: none;
 
     &::before {

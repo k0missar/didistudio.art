@@ -12,8 +12,14 @@
     display: grid;
     grid-template-columns: .258fr 1fr;
 
+    @media (min-width: 700px) {
+        grid-template-columns: 166px 1fr;
+        gap: 20px;
+    }
+
     @media (min-width: 1200px) {
         grid-template-columns: .775fr 1fr .517fr;
+        gap: 0;
     }
 }
 
