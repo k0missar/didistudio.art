@@ -56,6 +56,10 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4 {
     &--lh {
         line-height: 140%;
     }
+
+    &--tti {
+        text-transform: initial;
+    }
 }
 
 h1, .h1 {font-size: 28px}

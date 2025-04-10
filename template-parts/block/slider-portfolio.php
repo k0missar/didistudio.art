@@ -2,6 +2,18 @@
     wp_enqueue_style('didistudio-art-component-slider-portfolio');
     wp_enqueue_script('js-slider-portfolio');
 
+    $blockName = get_field('block_portfolio', 'option');
+    $blockPortfolioName = 'Портфолио';
+    $blockPortfolioDescription = 'Описание блока портфолио';
+    $blockPortfolioLink = '#';
+    $blockPortfolioAnchor = 'Смотреть все';
+    if ($blockName) {
+        $blockPortfolioName = $blockName['block_portfolio_name'];
+        $blockPortfolioDescription = $blockName['block_portfolio_description'];
+        $blockPortfolioLink = $blockName['block_portfolio_link'];
+        $blockPortfolioAnchor = $blockName['block_portfolio_anchor'];
+    }
+
     $arParam = [
         'post_type' => 'portfolio',
     ];
@@ -14,11 +26,11 @@
     <div class="portfolio-block">
         <div class="portfolio-block__wrapper wrapper">
             <div class="portfolio-block__content">
-                <h2 class="portfolio-block__title h1">Портфолио</h2>
+                <h2 class="portfolio-block__title h1"><?= $blockPortfolioName ?></h2>
                 <div class="portfolio-block__description">
-                    Наша команда стремится к успеху, тщательно анализируя сферу вашего бизнеса и рынок, что позволяет нам выявить ключевые задачи и предложить эффективные решения.
+                    <?= $blockPortfolioDescription ?>
                 </div>
-                <a href="#" class="portfolio-block__link">Смотреть все</a>
+                <a href="<?= $blockPortfolioLink ?>" class="portfolio-block__link"><?= $blockPortfolioAnchor ?></a>
             </div>
             <div class="portfolio-slider js-portfolio-slider">
                 <div class="portfolio-slider__wrapper swiper-wrapper">

@@ -50,6 +50,12 @@
   }
 }
 
+@media (min-width: 1600px) {
+  .about-me__heading {
+    font-size: 18px;
+  }
+}
+
 .about-me__content p {
   margin-bottom: 10px;
 }

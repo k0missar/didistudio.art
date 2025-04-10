@@ -1,39 +1,77 @@
 <?php
     wp_enqueue_style('didistudio-art-component-about-me');
+
+    $aboutPost = get_post(236, ARRAY_A) ?? '';
+
+    $postTopText = get_field('top_text_content', 236) ?? '';
+    $postImageContent = get_field('image_content', 236) ?? '';
+
+    $columnNameItem1 = '';
+    $columnNameItem2 = '';
+
+    $group = get_field('column_name_list', 236);
+    if ($group) {
+        $columnNameItem1 = $group['column_name_item_1'];
+        $columnNameItem2 = $group['column_name_item_2'];
+    }
+
+    $postBottomText = get_field('bottom_text_content', 236) ?? '';
+
+    $groupTextItem1 = '';
+    $groupTextItem2 = '';
+
+    $groupText = get_field('column_content_list', 236);
+    if ($groupText) {
+        $groupTextItem1 = $groupText['column_item_text_1'];
+        $groupTextItem2 = $groupText['column_item_text_2'];
+    }
 ?>
 <div class="about-me <?php echo $args['class'] ?? null;?>">
     <div class="wrapper about-me__wrapper">
         <div class="about-me__row">
-            <h1 class="h1 about-me__title">О нас</h1>
+            <h1 class="h1 about-me__title"><?= $aboutPost['post_title'] ?></h1>
         </div>
         <div class="about-me__row">
-            <h2 class="h3 h3--c-200">Обо мне</h2>
+            <?php if ($columnNameItem1): ?>
+                <h2 class="h3 h3--c-200 about-me__heading"><?= $columnNameItem1 ?></h2>
+            <?php endif; ?>
             <div class="about-me__content">
-                <p class="h2 h2--lh">
-                    “Я - Диана Свинцова, графический дизайнер с многолетним опытом работы. За это время я успела накопить знания в различных областях дизайна и собрать команду для работы над комплексными проектами.”
-                </p>
-                <img src="/wp-content/uploads/2025/03/author.jpg" alt="Диана Свинцова" width="900" height="491">
+                <?php if ($postTopText): ?>
+                    <div class="h2 h2--lh h2--tti">
+                        <?= $postTopText ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($postImageContent): ?>
+                    <img src="<?= $postImageContent ?>" alt="Диана Свинцова" width="900" height="491">
+                <?php endif; ?>
             </div>
         </div>
         <div class="about-me__row">
-            <h2 class="h3 h3--c-200">О команде</h2>
+            <?php if ($columnNameItem2): ?>
+                <h2 class="h3 h3--c-200 about-me__heading"><?= $columnNameItem2 ?></h2>
+            <?php endif; ?>
             <div class="about-me__content">
-                <p class="h2 h2--lh">
-                    Студия графического дизайна DIDI сегодня — это широкий спектр работ от создания фирменного стиля компании, дизайна продукции до контроля её производства.
-                </p>
+                <?php if ($postBottomText): ?>
+                    <div class="h2 h2--lh h2--tti">
+                        <?= $postBottomText ?>
+                    </div>
+                <?php endif; ?>
                 <div class="about-me__content-grid">
-                    <div>
-                        <p>
-                            Наша команда стремится  к успеху, тщательно анализируя сферу вашего бизнеса и рынок, что позволяет нам выявить ключевые задачи и предложить эффективные решения.
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            Мы гордимся качеством нашей работы и каждым реализованным проектом.
-                        </p>
-                    </div>
+                    <?php if ($groupTextItem1): ?>
+                        <div>
+                            <div>
+                                <?= $groupTextItem1 ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($groupTextItem2): ?>
+                        <div>
+                            <div>
+                                <?= $groupTextItem2 ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
-<!--                <a href="#" class="about-me__link">Смотреть всё</a>-->
             </div>
         </div>
 

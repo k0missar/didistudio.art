@@ -49,6 +49,9 @@ h1--c-200, h2--c-200, h3--c-200, h4--c-200, .h1--c-200, .h2--c-200, .h3--c-200, 
 h1--lh, h2--lh, h3--lh, h4--lh, .h1--lh, .h2--lh, .h3--lh, .h4--lh {
   line-height: 140%;
 }
+h1--tti, h2--tti, h3--tti, h4--tti, .h1--tti, .h2--tti, .h3--tti, .h4--tti {
+  text-transform: initial;
+}
 
 h1, .h1 {
   font-size: 28px;
@@ -194,6 +197,12 @@ p {
     font-size: 14px;
   }
 }
+@media (min-width: 1600px) {
+  .menu__link {
+    padding: 0;
+    font-size: 18px;
+  }
+}
 .menu__link:hover {
   color: var(--c-b);
   transition: color 0.25s ease;
@@ -219,6 +228,12 @@ p {
   .logo {
     width: 221px;
     height: 183px;
+  }
+}
+@media (min-width: 1600px) {
+  .logo {
+    width: 290px;
+    height: auto;
   }
 }
 .logo img {
@@ -345,6 +360,11 @@ p {
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
+}
+@media (min-width: 1600px) {
+  .header__contact a {
+    font-size: 16px;
+  }
 }
 
 .header__menu-btn {

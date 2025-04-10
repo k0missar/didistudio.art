@@ -14,20 +14,20 @@
 
 .article-portfolio__detail-picture {
     @include var.c_clamp(width, 336, 360);
-    max-height: 165px;
-    aspect-ratio: 226/165;
+    max-height: 229px;
+    aspect-ratio: 336/229;
 
     @media (min-width: 700px) {
         @include var.c_clamp(width, 728, 768);
-        max-height: 358px;
-        aspect-ratio: 728/358;
+        max-height: 496px;
+        aspect-ratio: 728/496;
     }
 
     @media (min-width: 1200px) {
         @include var.c_max(width, 1200, 1360, 1440);
         max-width: 1360px;
-        max-height: 670px;
-        aspect-ratio: 1360/670;
+        max-height: 925px;
+        aspect-ratio: 1360/925;
     }
 
     img {
@@ -166,6 +166,7 @@
 .--content {
     h1, h2, h3 {
         margin-bottom: clamp(10px, 3.333vw, 25px);
+        line-height: 1.4;
 
         @media (min-width: 700px) {
             margin-bottom: 25px;

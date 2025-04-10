@@ -1,15 +1,23 @@
 <?php
     wp_enqueue_style('didistudio-art-block-services');
+
+    $blockName = get_field('block_service', 'option');
+    $blockServiceName = 'Услуги';
+    $blockServiceDescription = 'Описание блока услуг';
+    if ($blockName) {
+        $blockServiceName = $blockName['block_service_name'];
+        $blockServiceDescription = $blockName['block_service_description'];
+    }
 ?>
 
 <div class="service">
     <div class="service__wrapper wrapper">
         <div class="service__content">
             <h2 class="service__title h1">
-                Услуги
+                <?= $blockServiceName ?>
             </h2>
             <div class="service__description">
-                Наша команда стремится к успеху, тщательно анализируя сферу вашего бизнеса и рынок.
+                <?= $blockServiceDescription ?>
             </div>
         </div>
         <div class="service__price">

@@ -194,6 +194,14 @@ if( function_exists('acf_add_options_page') ) {
         'capability'	=> 'edit_posts',
         'redirect'		=> false
     ));
+
+    acf_add_options_page(array(
+        'page_title' 	=> 'Настройки блоков на главной',
+        'menu_title'	=> 'Настройки блоков',
+        'parent_slug' 	=> 'theme-general-settings',
+        'capability'	=> 'edit_posts',
+        'redirect'		=> false
+    ));
 }
 
 // ПОРТФОЛИО
@@ -407,6 +415,43 @@ add_action('init', function () {
     ];
     register_post_type('progress', $args);
 });
+
+// Страницы-блоки
+function register_content_blocks_post_type() {
+    $labels = array(
+        'name'               => 'Блоки',
+        'singular_name'      => 'Блок',
+        'menu_name'          => 'Блоки контента',
+        'name_admin_bar'     => 'Блок',
+        'add_new'            => 'Добавить блок',
+        'add_new_item'       => 'Добавить новый блок',
+        'new_item'           => 'Новый блок',
+        'edit_item'          => 'Редактировать блок',
+        'view_item'          => 'Просмотр блока',
+        'all_items'          => 'Все блоки',
+        'search_items'       => 'Поиск блоков',
+        'parent_item_colon'  => '',
+        'not_found'          => 'Блоки не найдены.',
+        'not_found_in_trash' => 'В корзине блоков нет.',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'menu_icon'          => 'dashicons-layout', // Иконка из админки
+        'capability_type'    => 'page', // ВАЖНО: поведение как у страниц
+        'hierarchical'       => false, // Нет вложенности
+        'supports'           => array('title', 'editor', 'thumbnail'), // Поддерживаемые поля
+        'has_archive'        => false, // Нет архива
+        'rewrite'            => array('slug' => 'block', 'with_front' => false),
+        'show_in_rest'       => true, // Для Gutenberg и REST API
+    );
+
+    register_post_type('content_block', $args);
+}
+add_action('init', 'register_content_blocks_post_type');
 
 function format_phone($phone) {
     // Удаляем все лишние символы

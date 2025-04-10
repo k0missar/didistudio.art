@@ -46,6 +46,12 @@
     }
 }
 
+.about-me__heading {
+    @media (min-width: 1600px) {
+        font-size: 18px;
+    }
+}
+
 .about-me__content {
 
     p {

@@ -10,7 +10,8 @@
   .progress__header {
     display: grid;
     grid-template-columns: calc(min(31.944vw, 460px) - 20px) 1fr;
-    gap: 20px;
+    -moz-column-gap: 20px;
+         column-gap: 20px;
   }
 }
 

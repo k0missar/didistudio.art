@@ -46,6 +46,11 @@
         font-size: 14px;
     }
 
+    @media (min-width: 1600px) {
+        padding: 0;
+        font-size: 18px;
+    }
+
     &:hover {
         color: var(--c-b);
         transition: color .25s ease;
