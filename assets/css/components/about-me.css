@@ -55,6 +55,9 @@
     font-size: 18px;
   }
 }
+.about-me__heading span {
+  display: block;
+}
 
 .about-me__content p {
   margin-bottom: 10px;

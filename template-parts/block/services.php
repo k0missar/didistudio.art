@@ -33,6 +33,7 @@
                     foreach ($terms as $term) : ?>
                     <div class="service__price-block">
                         <div class="service__price-title h2">
+                            <div class="service__top-line"></div>
                             <label for="service-<?= $term->term_id ?>" class="h2" data-count="<?= str_pad($count++, 2, 0, STR_PAD_LEFT) ?>">
                                 <span><?= $term->name ?></span>
                             </label>
@@ -42,6 +43,7 @@
                                 </svg>
                             </div>
                             <input type="checkbox" id="service-<?= $term->term_id ?>" name="service-<?= $term->term_id ?>">
+                            <div class="service__bottom-line"></div>
                         </div>
                         <?php
                             $posts = get_posts([

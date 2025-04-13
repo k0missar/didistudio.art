@@ -33,11 +33,13 @@
         </div>
         <div class="about-me__row">
             <?php if ($columnNameItem1): ?>
-                <h2 class="h3 h3--c-200 about-me__heading"><?= $columnNameItem1 ?></h2>
+                <h2 class="h3 h3--c-200 about-me__heading">
+                    <span class="js-about-me-heading"><?= $columnNameItem1 ?></span>
+                </h2>
             <?php endif; ?>
             <div class="about-me__content">
                 <?php if ($postTopText): ?>
-                    <div class="h2 h2--lh h2--tti">
+                    <div class="h2 h2--lh h2--tti js-about-me-content-block">
                         <?= $postTopText ?>
                     </div>
                 <?php endif; ?>
@@ -48,25 +50,27 @@
         </div>
         <div class="about-me__row">
             <?php if ($columnNameItem2): ?>
-                <h2 class="h3 h3--c-200 about-me__heading"><?= $columnNameItem2 ?></h2>
+                <h2 class="h3 h3--c-200 about-me__heading">
+                    <span class="js-about-me-heading"><?= $columnNameItem2 ?></span>
+                </h2>
             <?php endif; ?>
             <div class="about-me__content">
                 <?php if ($postBottomText): ?>
-                    <div class="h2 h2--lh h2--tti">
+                    <div class="h2 h2--lh h2--tti js-about-me-content-block">
                         <?= $postBottomText ?>
                     </div>
                 <?php endif; ?>
                 <div class="about-me__content-grid">
                     <?php if ($groupTextItem1): ?>
                         <div>
-                            <div>
+                            <div class="js-about-me-column">
                                 <?= $groupTextItem1 ?>
                             </div>
                         </div>
                     <?php endif; ?>
                     <?php if ($groupTextItem2): ?>
                         <div>
-                            <div>
+                            <div class="js-about-me-column">
                                 <?= $groupTextItem2 ?>
                             </div>
                         </div>
