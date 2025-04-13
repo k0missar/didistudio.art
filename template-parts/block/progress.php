@@ -34,11 +34,18 @@
                             while ($query->have_posts()) : $query->the_post();
                                 global $post;
                     ?>
-                        <li class="progress__item swiper-slide" data-progress-count="<?= str_pad($count, 2, 0, STR_PAD_LEFT) ?>">
-                            <span class="h2"><?php the_title()  ?></span>
-                            <?php the_excerpt(); ?>
+                        <li class="progress__item swiper-slide">
+                            <div class="progress__item-header">
+                                <span>
+                                    <?= str_pad($count, 2, 0, STR_PAD_LEFT) ?>
+                                </span>
+                                <span class="h2 progress__item-title"><?php the_title()  ?></span>
+                            </div>
+                            <div class="progress__item-description">
+                                <?php the_excerpt(); ?>
+                            </div>
                         </li>
-                    <?php 
+                    <?php
                         $count++;
                         endwhile;
                         wp_reset_postdata();

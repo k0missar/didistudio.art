@@ -27,14 +27,7 @@
         <div class="header__wrapper">
             <div class="header__logo logo">
                 <a href="/">
-                    <img
-                        src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>"
-                        alt=""
-                        srcset="
-                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo-mobile.svg';?> 700w,
-                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo-tablet.svg';?> 1200w,
-                            <?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?> 2000w"
-                        sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 2000px">
+                    <img src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>">
                 </a>
             </div>
             <nav class="header__menu js-header-menu">
@@ -71,5 +64,10 @@
                 <div class="--line"></div>
             </div>
         </div>
+        <?php if (is_home()): ?>
+            <div class="header__mobile-logo">
+                <img src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>">
+            </div>
+        <?php endif ?>
     </div>
 </header>

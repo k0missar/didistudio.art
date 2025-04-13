@@ -1,21 +1,6 @@
 const windowWidth = window.innerWidth;
 
 const mBody = document.querySelector('body')
-const menu = document.querySelector('.js-header-menu')
-const menuBtn = document.querySelector('.js-menu-btn')
-const menuCloseBtn = document.querySelector('.js-menu-close-btn')
-
-if(menu && menuBtn && menuCloseBtn) {
-    menuBtn.addEventListener('click', ()=> {
-        menu.classList.add('header__menu--show')
-        mBody.style.overflow = 'hidden'
-    })
-
-    menuCloseBtn.addEventListener('click', ()=> {
-        menu.classList.remove('header__menu--show')
-        mBody.style.overflow = 'auto'
-    })
-}
 
 const serviceList = document.querySelectorAll('.service__list');
 
@@ -90,7 +75,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         })
     }
 
-    gsap.utils.toArray('.portfolio-block__description, .portfolio-block__link').forEach(item => {
+    gsap.utils.toArray('.portfolio-block__title, .portfolio-block__description, .portfolio-block__link').forEach(item => {
         gsap.from(item, {
             scrollTrigger: {
                 trigger: item, // Мы используем сам элемент .about-me__title для триггера
@@ -119,24 +104,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const servicePrice = document.querySelector('.service__price');
     if (servicePrice) {
         const servicePriceHeight = servicePrice.offsetHeight + 250;
-        gsap.utils.toArray('.service__top-line, .service__bottom-line').forEach(item => {
-            gsap.to(item, {
-                scrollTrigger: {
-                    trigger: servicePrice,
-                    start: 'top-=100 bottom',
-                    end: `top+=${servicePriceHeight} bottom`,
-                    scrub: animationScrub,
-                },
-                width: 0,
-                duration: 2,
-            })
-        })
+
+        const lines = gsap.utils.toArray('.service__top-line, .service__bottom-line');
+
+        gsap.to(lines, {
+            scrollTrigger: {
+                trigger: servicePrice,
+                start: 'top-=100 bottom',
+                end: `top+=${servicePriceHeight} bottom`,
+                scrub: animationScrub,
+            },
+            width: 0,
+            stagger: 0.2,
+            duration: 2,
+        });
     }
 
     const progressSlider = document.querySelector('.service__price');
     if (progressSlider) {
         const progressSliderHeight = progressSlider.offsetHeight + 250;
-        console.log(progressSliderHeight)
         gsap.from('.progress__item', {
             scrollTrigger: {
                 trigger: '.progress-slider',
@@ -151,28 +137,140 @@ document.addEventListener("DOMContentLoaded", (event) => {
         })
     }
 
-    const footerContactList = document.querySelector('.footer__contact-list');
+    const footerContactList = document.querySelector('.footer__contact-item');
     if (footerContactList) {
-        const footerContactListHeight = footerContactList.offsetHeight + 100;
-        //const fullHeight = footerContactList.querySelector('.footer__contact-link').scrollHeight
+        const fullHeight = footerContactList.querySelector('.footer__contact-link').scrollHeight
 
-        gsap.utils.toArray('.footer__contact-item').forEach(item => {
-            const fullHeight = item.scrollHeight + 16;
-            // console.log(fullHeight)
+        gsap.utils.toArray('.footer__contact-animation').forEach(item => {
             gsap.fromTo(item,
                 { height: 0, overflow: 'hidden' },
                 {
                     height: fullHeight,
                     scrollTrigger: {
-                        trigger: footerContactList,
-                        start: 'top bottom',
-                        end: `top+=${footerContactListHeight} bottom`,
-                        scrub: animationScrub,
+                        trigger: item.closest('.footer__contact-item'),
+                        start: `botto bottom`,
                     },
-                    ease: 'none',
                     duration: 2,
                 }
             );
         });
+
+
+        const cardPortfolio = document.querySelectorAll('.archive.card-portfolio');
+
+        if (cardPortfolio.length) {
+            cardPortfolio.forEach(item => {
+                const img = item.querySelector('.archive.card-portfolio__src');
+                const imgAnimation = item.querySelector('.archive.card-portfolio__animation');
+                const title = item.querySelector('.archive.card-portfolio__title');
+                const description = item.querySelector('.archive.card-portfolio__description');
+                const link = item.querySelector('.archive.card-portfolio__link');
+                const number = item.querySelector('.js-animation-number');
+
+                if (!img || !imgAnimation || !title || !description || !link) return;
+
+                const imgHeight = img.scrollHeight;
+
+                if (windowWidth >= 1200) {
+                    gsap.fromTo(imgAnimation,
+                        {height: 0},
+                        {
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top bottom',
+                            },
+                            height: imgHeight,
+                            duration: 2,
+                        }
+                    );
+
+                    gsap.from([title, description, link], {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top bottom',
+                        },
+                        y: 200,
+                        opacity: 0,
+                        stagger: 0.25,
+                        duration: 2,
+                    });
+
+                    gsap.from(number, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top+=40 bottom',
+                        },
+                        x: 200,
+                        opacity: 0,
+                        duration: 2,
+                    });
+                } else {
+                    gsap.fromTo(imgAnimation,
+                        {height: 0},
+                        {
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top bottom',
+                            },
+                            height: imgHeight,
+                            duration: 2,
+                        }
+                    );
+
+                    gsap.from([title, description, link], {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top bottom',
+                        },
+                        x: 200,
+                        opacity: 0,
+                        stagger: 0.25,
+                        duration: 2,
+                    });
+
+                    gsap.from(number, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top+=40 bottom',
+                        },
+                        x: -200,
+                        opacity: 0,
+                        duration: 2,
+                    });
+                }
+            });
+        }
+    }
+
+    // Мобильное меню появление и анимация
+    const menu = document.querySelector('.js-header-menu')
+    const menuBtn = document.querySelector('.js-menu-btn')
+    const menuCloseBtn = document.querySelector('.js-menu-close-btn')
+
+    if(menu && menuBtn && menuCloseBtn) {
+        menuBtn.addEventListener('click', ()=> {
+            menu.classList.add('header__menu--show')
+            mBody.style.overflow = 'hidden'
+
+            gsap.delayedCall(0.2, () => {
+                const itemAnimation = gsap.utils.toArray('.header__contact-mobile, .menu__link');
+                gsap.fromTo(itemAnimation,
+                    {
+                        x: 150,
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        opacity: 1,
+                        stagger: 0.2,
+                        duration: 1,
+                });
+            });
+        })
+
+        menuCloseBtn.addEventListener('click', ()=> {
+            menu.classList.remove('header__menu--show')
+            mBody.style.overflow = 'auto'
+        })
     }
 });

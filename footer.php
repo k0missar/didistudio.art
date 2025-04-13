@@ -43,13 +43,18 @@
                 <?php endif; ?>
                     <div class="footer__contact-list">
                         <div class="footer__contact-item">
-                            <a href="tel:<?= CONTACT_PHONE ?>" class="footer__contact-link">
-                                <?php echo format_phone(CONTACT_PHONE);?>
-                            </a></div>
+                            <div class="footer__contact-animation">
+                                <a href="tel:<?= CONTACT_PHONE ?>" class="footer__contact-link">
+                                    <?php echo format_phone(CONTACT_PHONE);?>
+                                </a>
+                            </div>
+                        </div>
                         <div class="footer__contact-item">
-                            <a href="mailto:<?= CONTACT_EMAIL ?>" class="footer__contact-link">
-                                <?= CONTACT_EMAIL ?>
-                            </a>
+                            <div class="footer__contact-animation">
+                                <a href="mailto:<?= CONTACT_EMAIL ?>" class="footer__contact-link">
+                                    <?= CONTACT_EMAIL ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

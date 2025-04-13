@@ -1,5 +1,6 @@
 .archive.card-portfolio {
   padding: clamp(16.666px, 5.555vw, 40px) 0;
+  overflow: hidden;
 }
 @media (min-width: 700px) {
   .archive.card-portfolio {
@@ -45,6 +46,7 @@
   width: clamp(280px, 93.3333333333vw, 653.3333333333px);
   max-height: 229px;
   aspect-ratio: 336/229;
+  position: relative;
 }
 @media (min-width: 700px) {
   .archive.card-portfolio__src {
@@ -62,13 +64,32 @@
   }
 }
 
+.archive.card-portfolio__animation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+@media (min-width: 1200px) {
+  .archive.card-portfolio__animation {
+    top: 0;
+    bottom: unset;
+  }
+}
+
 .archive.card-portfolio__img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  -o-object-position: center bottom;
+     object-position: center bottom;
+}
+@media (min-width: 1200px) {
+  .archive.card-portfolio__img {
+    -o-object-position: center top;
+       object-position: center top;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -97,4 +118,8 @@
   .archive.card-portfolio__description {
     margin-bottom: 25px;
   }
+}
+
+.archive.card-portfolio__link {
+  display: block;
 }

@@ -36,10 +36,21 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.home.card-portfolio:hover .home.card-portfolio__image {
+  filter: grayscale(0%);
+  transition: filter 0.3s ease;
 }
 
 .home.card-portfolio__title {
   margin-bottom: 8px;
+}
+
+.home.card-portfolio__description {
+  text-transform: initial;
 }
 
 .home.card-portfolio__link {

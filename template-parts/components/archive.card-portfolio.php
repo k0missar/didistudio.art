@@ -11,11 +11,15 @@ wp_enqueue_style('didistudio-art-component-archive-card-portfolio');
     <div class="archive card-portfolio__wrapper">
         <div class="archive card-portfolio__container">
             <div class="archive card-portfolio__src">
-                <img src="<?php echo $args['preview_picture'];?>" class="archive card-portfolio__img" alt="<?php echo $args['title'];?>">
+                <div class="archive card-portfolio__animation">
+                    <img src="<?php echo $args['preview_picture'];?>" class="archive card-portfolio__img" alt="<?php echo $args['title'];?>">
+                </div>
             </div>
         </div>
         <div class="archive card-portfolio__number number">
-            <?php echo $args['number'];?>
+            <div class="js-animation-number">
+                <?php echo $args['number'];?>
+            </div>
         </div>
         <div class="archive card-portfolio__content">
             <h2 class="archive card-portfolio__title">
