@@ -46,6 +46,13 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.card-logotype:hover .card-logotype__image {
+  filter: grayscale(0%);
+  transition: filter 0.3s ease;
 }
 
 .card-logotype__number {

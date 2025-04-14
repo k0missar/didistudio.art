@@ -25,21 +25,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(ScrollTrigger)
     // gsap code here!
     let animationScrub = false
-    if (windowWidth >= 700) {
-        animationScrub = true
-    }
+    // if (windowWidth >= 700) {
+    //     animationScrub = false
+    // }
 
     gsap.utils.toArray('.about-me__title, .js-about-me-content-block, .js-about-me-heading, .js-about-me-column, .about-me svg').forEach(item => {
         gsap.from(item, {
             scrollTrigger: {
                 trigger: item, // Мы используем сам элемент .about-me__title для триггера
                 start: 'bottom-=200 bottom', // анимация начинается, когда нижний край .about-me__title пересекает нижний край окна
-                end: '+=400',
-                scrub: animationScrub,
+                // end: '+=400',
+                // scrub: animationScrub,
+
             },
             y: 200,
             opacity: 0,
             duration: 2,
+            stagger: 1,
         });
     })
 
@@ -53,8 +55,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         scrollTrigger: {
             trigger: '.about-me__content img', // Мы используем сам элемент .about-me__title для триггера
             start: `bottom-=${start} bottom`, // -=${offset} анимация начинается, когда нижний край .about-me__title пересекает нижний край окна
-            end: `+=${end}`,
-            scrub: animationScrub,
+            // end: `+=${end}`,
+            // scrub: animationScrub,
         },
         y: 200,
         opacity: 0,
@@ -80,8 +82,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             scrollTrigger: {
                 trigger: item, // Мы используем сам элемент .about-me__title для триггера
                 start: 'bottom-=200 bottom', // анимация начинается, когда нижний край .about-me__title пересекает нижний край окна
-                end: '+=400',
-                scrub: animationScrub,
+                // end: '+=400',
+                // scrub: animationScrub,
             },
             y: 200,
             duration: 2,
@@ -92,8 +94,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         scrollTrigger: {
             trigger: '.portfolio-slider',
             start: 'top-=100 bottom',
-            end: 'top top',
-            scrub: animationScrub,
+            // end: 'top top',
+            // scrub: animationScrub,
         },
         y: 100,
         opacity: 0,
@@ -111,8 +113,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             scrollTrigger: {
                 trigger: servicePrice,
                 start: 'top-=100 bottom',
-                end: `top+=${servicePriceHeight} bottom`,
-                scrub: animationScrub,
+                // end: `top+=${servicePriceHeight} bottom`,
+                // scrub: animationScrub,
             },
             width: 0,
             stagger: 0.2,
@@ -127,8 +129,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             scrollTrigger: {
                 trigger: '.progress-slider',
                 start: 'top-=100 bottom',
-                end: `top+=${progressSliderHeight} bottom`,
-                scrub: animationScrub,
+                // end: `top+=${progressSliderHeight} bottom`,
+                // scrub: animationScrub,
             },
             y: 100,
             opacity: 0,
@@ -264,7 +266,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                         opacity: 1,
                         stagger: 0.2,
                         duration: 1,
-                });
+                    });
             });
         })
 
