@@ -98,6 +98,11 @@
   flex-shrink: 0;
   text-decoration: none;
   color: var(--c-s-100);
+  transition: color 0.5s ease;
+}
+.portfolio-menu__link:hover {
+  color: var(--c-b);
+  transition: color 0.5s ease;
 }
 
 .portfolio-menu__item.current-menu-item .portfolio-menu__link {

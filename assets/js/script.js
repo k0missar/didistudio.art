@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         duration: 2,
     });
 
-    if (windowWidth >= 1200) {
+    if (windowWidth >= 1200 && ANIMATION === true) {
         gsap.set('.logo', { height: 183 });
         gsap.to('.logo', {
             scrollTrigger: {

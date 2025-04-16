@@ -24,3 +24,10 @@
         object-position: bottom center;
     }
 }
+
+.--not-home {
+    .logo {
+        max-height: 96px;
+        max-width: 120px;
+    }
+}

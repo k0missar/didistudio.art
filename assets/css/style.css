@@ -3,7 +3,7 @@
   --c-s-100: #CECECE;
   --c-s-200: #7E7E7D;
   --c-b: #1C1C1C;
-  --c-bg: #FAFAFA;
+  --c-bg: #FEFEFE;
   --f-body: "Montserrat", "Verdana", sans-serif;
   --f-heading: "Montserrat", "Verdana", sans-serif;
 }
@@ -247,6 +247,11 @@ p {
      object-position: bottom center;
 }
 
+.--not-home .logo {
+  max-height: 96px;
+  max-width: 120px;
+}
+
 .contact-mobile {
   display: flex;
   flex-direction: column;
@@ -296,6 +301,10 @@ p {
   .header {
     margin-bottom: 40px;
   }
+}
+
+.--not-home {
+  margin-bottom: 0;
 }
 
 .header__wrapper {

@@ -16,6 +16,15 @@
 
     $arParam = [
         'post_type' => 'portfolio',
+        'tax_query'      => [
+            [
+                'taxonomy' => 'portfolio-section', // Замените на нужную таксономию, если это не категория
+                'field'    => 'slug',
+                'terms'    => 'work',  // Замените 'work' на нужный терм
+                'operator' => 'IN',
+            ],
+        ],
+        'posts_per_page' => 4,
     ];
 
     $arResult = new WP_Query($arParam);

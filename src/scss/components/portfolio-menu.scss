@@ -92,6 +92,12 @@
     flex-shrink: 0;
     text-decoration: none;
     color: var(--c-s-100);
+    transition: color .5s ease;
+
+    &:hover {
+        color: var(--c-b);
+        transition: color .5s ease;
+    }
 }
 
 .portfolio-menu__item.current-menu-item {

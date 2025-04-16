@@ -17,12 +17,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<?php wp_head(); ?>
+    <?php if (is_home()): ?>
+    <script>
+        var ANIMATION = true;
+    </script>
+    <?php endif; ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="header">
+<header class="header <?= !is_home() ? '--not-home' : '' ?>">
     <div class="container">
         <div class="header__wrapper">
             <div class="header__logo logo">
