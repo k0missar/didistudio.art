@@ -1,24 +1,17 @@
 .card-logotype {
   margin-bottom: clamp(16px, 5.555vw, 40px);
   display: grid;
-  grid-template-columns: 0.258fr 1fr;
+  grid-template-columns: 1fr;
   row-gap: 12px;
   overflow: hidden;
 }
 @media (min-width: 700px) {
   .card-logotype {
     margin-bottom: 40px;
-    grid-template-columns: 0.293fr 1fr;
-  }
-}
-@media (min-width: 1200px) {
-  .card-logotype {
-    grid-template-columns: 0.268fr 1fr;
   }
 }
 
 .card-logotype__src {
-  grid-column: 1/-1;
   width: clamp(280px, 93.3333333333vw, 653.3333333333px);
   max-height: 228px;
   aspect-ratio: 336/228;
@@ -46,8 +39,12 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  filter: grayscale(100%);
   transition: filter 0.3s ease;
+}
+@media (min-width: 971px) {
+  .card-logotype__image {
+    filter: grayscale(100%);
+  }
 }
 
 .card-logotype:hover .card-logotype__image {
@@ -55,16 +52,13 @@
   transition: filter 0.3s ease;
 }
 
-.card-logotype__number {
-  grid-column: 1/2;
-  grid-row: 2/3;
-}
-
-.card-logotype__content {
-  grid-column: 2/3;
-  grid-row: 2/3;
-}
-
 .card-logotype__title {
-  margin-bottom: 12px;
+  max-width: 336px;
+  margin: 0 auto 12px;
+  text-align: center;
+}
+@media (min-width: 700px) {
+  .card-logotype__title {
+    max-width: 360px;
+  }
 }

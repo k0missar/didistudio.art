@@ -29,7 +29,7 @@
 
 <header class="header <?= !is_home() ? '--not-home' : '' ?>">
     <div class="container">
-        <div class="header__wrapper">
+        <div class="header__wrapper js-main-panel">
             <div class="header__logo logo">
                 <a href="/">
                     <img src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>">
@@ -67,6 +67,27 @@
                 <div class="--line"></div>
                 <div class="--line"></div>
                 <div class="--line"></div>
+            </div>
+        </div>
+        <div class="header__mobile-panel js-mobile-panel">
+            <div class="container">
+                <div class="header__wrapper">
+                    <div class="header__logo logo">
+                        <a href="/">
+                            <img src="<?php echo get_template_directory_uri() . '/assets/images/didi-logo.svg';?>">
+                        </a>
+                    </div>
+                    <div class="header__contact">
+                        <?php if (CONTACT_PHONE): ?>
+                            <a href="tel:+<?php echo CONTACT_PHONE;?>"><?php echo format_phone(CONTACT_PHONE);?></a>
+                        <?php endif; ?>
+                    </div>
+                    <div class="header__menu-btn js-menu-btn">
+                        <div class="--line"></div>
+                        <div class="--line"></div>
+                        <div class="--line"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php if (is_home()): ?>

@@ -36,8 +36,12 @@
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  filter: grayscale(100%);
   transition: filter 0.3s ease;
+}
+@media (min-width: 1000px) {
+  .home.card-portfolio__image {
+    filter: grayscale(100%);
+  }
 }
 
 .home.card-portfolio:hover .home.card-portfolio__image {

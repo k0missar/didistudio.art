@@ -164,5 +164,26 @@
     img {
         width: 234px;
         height: auto;
+        margin-right: 6px;
+    }
+}
+
+.header__mobile-panel {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: var(--c-bg);
+    padding: 12px 0;
+    transition: top .75s ease;
+
+    &--show {
+        top: 0;
+        transition: top .75s ease;
+    }
+
+    @media (min-width: 700px) {
+        display: none;
     }
 }

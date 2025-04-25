@@ -1,6 +1,12 @@
 @use '../var';
 
-.article-portfolio {}
+.article-portfolio {
+    margin-top: 20px;
+
+    @media (min-width: 1200px) {
+        margin-top: 40px;
+    }
+}
 
 // Шапка
 .article-portfolio__header {

@@ -172,6 +172,8 @@ function didistudio_art_scripts() {
 
 	wp_enqueue_script( 'didistudio-art-js', get_template_directory_uri() . '/assets/js/script.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'swiper-js', get_template_directory_uri() . '/vendor/js/swiper-bundle.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'gsap-js', get_template_directory_uri() . '/vendor/js/gsap.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'scrolltrigger-js', get_template_directory_uri() . '/vendor/js/scrolltrigger.min.js', array(), _S_VERSION, true );
 
 	wp_register_script( 'js-slider-portfolio', get_template_directory_uri() . '/assets/js/portfolio-slider.js', array(), _S_VERSION, true );
 	wp_register_script( 'js-slider-progress', get_template_directory_uri() . '/assets/js/progress-slider.js', array(), _S_VERSION, true );
@@ -466,15 +468,69 @@ function format_phone($phone) {
     return $phone;
 }
 
-// ФУНКЦИЯ ДЛЯ DEV СЕРВЕРА РАЗРАБОТКИ
-function change_domain_in_assets($src) {
-    // Проверяем, если домен — это dev-окружение (wsl)
-    if (strpos($_SERVER['HTTP_HOST'], 'wsl') !== false) {
-        // Заменяем только первое вхождение 'didistudio.art' на 'didistudio.wsl'
-        $src = preg_replace('/didistudio\.art/', 'didistudio.wsl', $src, 1);
-    }
-    return $src;
-}
+function custom_posts_pagination() {
+    global $wp_query;
+    $big = 999999999; // уникальное число для замены
 
-add_filter('style_loader_src', 'change_domain_in_assets');
-add_filter('script_loader_src', 'change_domain_in_assets');
+    $current_page = max(1, get_query_var('paged'));
+    $total_pages = $wp_query->max_num_pages;
+
+    if ($total_pages <= 1) return;
+
+    $output = '<nav class="pagination">';
+
+    // Назад
+    if ($current_page > 1 && $current_page < $total_pages) {
+        $output .= '<a class="pagination__numbers pagination__prev" href="' . get_pagenum_link($current_page - 1) . '">Назад</a>';
+    }
+
+    // Страницы
+    $start = max(1, $current_page - 1);
+    $end = min($total_pages, $current_page + 1);
+
+    for ($i = $start; $i <= $end; $i++) {
+        if ($i == $current_page) {
+            $output .= '<span class="pagination__numbers pagination__numbers--current">' . $i . '</span>';
+        } else {
+            $output .= '<a class="pagination__numbers" href="' . get_pagenum_link($i) . '">' . $i . '</a>';
+        }
+    }
+
+    // Дальше
+    if ($current_page < $total_pages && $current_page > 1) {
+        $output .= '<a class="pagination__numbers pagination__next" href="' . get_pagenum_link($current_page + 1) . '">Дальше</a>';
+    }
+
+    // Спец: если первая страница — только "Дальше"
+    if ($current_page == 1) {
+        $output = '<nav class="pagination">';
+        for ($i = 1; $i <= min(3, $total_pages); $i++) {
+            if ($i == $current_page) {
+                $output .= '<span class="pagination__numbers pagination__numbers--current">' . $i . '</span>';
+            } else {
+                $output .= '<a class="pagination__numbers" href="' . get_pagenum_link($i) . '">' . $i . '</a>';
+            }
+        }
+        if ($total_pages > 1) {
+            $output .= '<a class="pagination__numbers pagination__next" href="' . get_pagenum_link(2) . '">Дальше</a>';
+        }
+    }
+
+    // Спец: если последняя страница — только "Назад"
+    if ($current_page == $total_pages && $total_pages > 1) {
+        $output = '<nav class="pagination">';
+        if ($total_pages > 1) {
+            $output .= '<a class="pagination__numbers pagination__prev" href="' . get_pagenum_link($current_page - 1) . '">Назад</a>';
+        }
+        for ($i = max(1, $total_pages - 2); $i <= $total_pages; $i++) {
+            if ($i == $current_page) {
+                $output .= '<span class="pagination__numbers pagination__numbers--current">' . $i . '</span>';
+            } else {
+                $output .= '<a class="pagination__numbers" href="' . get_pagenum_link($i) . '">' . $i . '</a>';
+            }
+        }
+    }
+
+    $output .= '</nav>';
+    echo $output;
+}

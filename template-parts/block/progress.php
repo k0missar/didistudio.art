@@ -18,7 +18,7 @@
 
     $query = new WP_Query($args);
 ?>
-<div class="progress">
+<div class="progress" id="progress">
     <div class="progress__wrapper wrapper">
         <div class="progress__header">
             <h2 class="progress__title h1"><?= $blockProgressName ?></h2>

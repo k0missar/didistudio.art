@@ -29,7 +29,7 @@
                 </ul>
             </div>
 
-            <div class="footer__contact">
+            <div class="footer__contact" id="contact">
                 <div class="footer__contact-wrapper">
                 <?php if (CONTACT_TELEGRAM || CONTACT_WHATSAPP): ?>
                     <div class="footer__social-list">
@@ -64,8 +64,5 @@
 
     <?php wp_footer(); ?>
 </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 </body>
 </html>

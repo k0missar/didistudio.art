@@ -5,8 +5,6 @@ wp_enqueue_style('didistudio-art-taxonomy-portfolio-work');
 $term = get_queried_object();
 ?>
 
-<!--<h1>--><?php //echo esc_html($term->name); ?><!--</h1>-->
-
 <?php
     get_template_part('template-parts/components/portfolio-menu');
 ?>
@@ -38,8 +36,8 @@ $term = get_queried_object();
             <?php endwhile; ?>
         </div>
 
-        <div class="pagination">
-            <?php the_posts_pagination(); ?>
+        <div class="taxonomy-work__pagination">
+            <?php custom_posts_pagination(); ?>
         </div>
     <?php else : ?>
         <p>Пока нет работ в этой категории.</p>

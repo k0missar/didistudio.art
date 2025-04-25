@@ -33,8 +33,8 @@ wp_enqueue_style('didistudio-art-taxonomy-portfolio-logotype');
                     <?php endwhile; ?>
                 </div>
 
-                <div class="pagination">
-                    <?php the_posts_pagination(); ?>
+                <div class="logotype__pagination">
+                    <?php custom_posts_pagination(); ?>
                 </div>
             <?php else : ?>
                 <p>Пока нет работ в этой категории.</p>

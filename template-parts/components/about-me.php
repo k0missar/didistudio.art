@@ -26,7 +26,7 @@
         $groupTextItem2 = $groupText['column_item_text_2'];
     }
 ?>
-<div class="about-me <?php echo $args['class'] ?? null;?>">
+<div class="about-me <?php echo $args['class'] ?? null;?>" id="about">
     <div class="wrapper about-me__wrapper">
         <div class="about-me__row">
             <h1 class="h1 about-me__title"><?= $aboutPost['post_title'] ?></h1>

@@ -1,0 +1,90 @@
+.pagination {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    @media (min-width: 700px) {
+        margin-top: 100px;
+    }
+}
+
+.pagination__numbers {
+    display: block;
+    padding: 5px;
+    color: var(--c-s-200);
+    font-family: var(--f-body);
+    font-weight: 500;
+    font-size: 12px;
+    text-decoration: none;
+
+    @media (min-width: 700px) {
+        font-size: 14px;
+    }
+
+    &:hover {
+        color: var(--c-b);
+    }
+
+    &--current {
+        display: block;
+        line-height: 100%;
+        color: var(--c-b);
+    }
+}
+
+.pagination__prev {
+    margin-right: 6px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    position: relative;
+    color: var(--c-b);
+
+    @media (min-width: 700px) {
+        //margin-right: 18px;
+    }
+
+    &::before {
+        content: '';
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 29 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.07114 0L8.77825 0.707107L2.4846 7.00076H29.0001V8.00076H2.70808L8.7784 14.0711L8.07129 14.7782L0.682129 7.38901L8.07114 0Z' fill='%231C1C1C'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        display: block;
+        width: 20px;
+        height: 8px;
+
+        @media (min-width: 700px) {
+            width: 27px;
+            height: 12px;
+        }
+    }
+}
+
+.pagination__next {
+    margin-left: 6px;
+    color: var(--c-b);
+    position: relative;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    @media (min-width: 700px) {
+        //margin-left: 18px;
+    }
+
+    &::after {
+        content: '';
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 29 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.07114 0L8.77825 0.707107L2.4846 7.00076H29.0001V8.00076H2.70808L8.7784 14.0711L8.07129 14.7782L0.682129 7.38901L8.07114 0Z' fill='%231C1C1C'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        display: block;
+        width: 20px;
+        height: 8px;
+        transform: rotate(180deg);
+
+        @media (min-width: 700px) {
+            width: 27px;
+            height: 12px;
+        }
+    }
+}

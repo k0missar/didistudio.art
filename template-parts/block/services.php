@@ -10,7 +10,7 @@
     }
 ?>
 
-<div class="service">
+<div class="service" id="service">
     <div class="service__wrapper wrapper">
         <div class="service__content">
             <h2 class="service__title h1">
